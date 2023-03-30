@@ -21,7 +21,6 @@ const childMsg = ref();
       </el-header>
 
       <el-main>
-        {{ childMsg }}
         <router-view @response="(msg) => childMsg = msg"/>
       </el-main>
     </el-container>

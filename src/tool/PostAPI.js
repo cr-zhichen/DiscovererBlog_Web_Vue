@@ -162,7 +162,7 @@ function commentCountPost(ok, err) {
 }
 
 //文章数统计 Post
-function articleCountPost(ok, err) {
+export function articleCountPost(ok, err) {
     var body = {};
     Post(articleCountUrl, null, body, ok, err);
 }
