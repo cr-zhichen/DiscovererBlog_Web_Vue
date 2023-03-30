@@ -7,6 +7,7 @@ import NotFound from './page/NotFoundPage.vue'
 import LoginPage from './page/LoginPage.vue'
 import ArticlePage from './page/ArticlePage.vue'
 import ManagePage from "./page/ManagePage.vue";
+import Routes from "./components/Routes.vue";
 
 
 //======路由=====//
@@ -33,15 +34,26 @@ const currentView = computed(() => {
 
 <template>
 
-  <a href="#/">首页</a> |
-  <a href="#/login">登录</a> |
-  <a href="#/article">文章</a> |
-  <a href="#/manage">管理</a> |
-  <a href="#/non-existent-path">404</a>
-  <component :is="currentView"/>
+  <div class="common-layout">
+    <el-container>
+      <el-header class="app-header">
+        <Routes/>
+      </el-header>
+
+      <el-main>
+        <component :is="currentView"/>
+      </el-main>
+    </el-container>
+  </div>
+
 
 </template>
 
 <style scoped>
+
+.app-header {
+  display: flex;
+  justify-content: center;
+}
 
 </style>

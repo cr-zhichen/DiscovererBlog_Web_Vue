@@ -71,7 +71,7 @@ function sendCodePost(email, ok, err) {
 }
 
 //查询文章列表 Post
-function queryArticleListPost(page, pageSize, tag, keyWord, ok, err) {
+export function queryArticleListPost(page, pageSize, tag, keyWord, ok, err) {
     var body = {
         "page": page,
         "pageSize": pageSize,
