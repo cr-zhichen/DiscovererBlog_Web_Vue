@@ -1,0 +1,1 @@
+import{D as a,L as n}from"./index-7ae9a562.js";const c={__name:"ManagePage",emits:["response"],setup(s,{emit:e}){return e("response","管理"),(r,t)=>(a(),n("h1",null,"ManagePage"))}};export{c as default};
