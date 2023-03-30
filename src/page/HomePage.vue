@@ -11,7 +11,8 @@ defineProps({})
 const page = ref(1);
 const pageSize = ref(10);
 const reQueryArticleList = ref();
-
+const emit = defineEmits(['response'])
+emit('response', '首页')
 //======方法=====//
 
 

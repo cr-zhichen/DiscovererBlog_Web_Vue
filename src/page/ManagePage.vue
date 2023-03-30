@@ -1,7 +1,8 @@
 <script setup>
 import {ref} from 'vue'
 
-defineProps({})
+const emit = defineEmits(['response'])
+emit('response', '管理')
 </script>
 
 <template>

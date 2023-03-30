@@ -1,28 +1,60 @@
 <script setup>
-import {ref, watch} from 'vue'
+import {getCurrentInstance, ref, watch} from 'vue'
 
-const radio = ref('首页')
+const props = defineProps({
+  msg: String
+})
+
+const radio = ref("")
 
 //监听radio的变化
 watch(radio, async (newQuestion, oldQuestion) => {
   switch (newQuestion) {
     case '首页':
-      window.location.href = '#/'
+      if (props.msg === '首页') {
+        return
+      }
+      window.location.href = '/'
       break
     case '文章':
-      window.location.href = '#/article'
+      if (props.msg === '文章') {
+        return
+      }
+      window.location.href = '/article'
       break
     case '登录':
-      window.location.href = '#/login'
+      if (props.msg === '登录') {
+        return
+      }
+      window.location.href = '/login'
       break
     case '管理':
-      window.location.href = '#/manage'
+      if (props.msg === '管理') {
+        return
+      }
+      window.location.href = '/manage'
       break
   }
 })
-
-defineProps({})
+//监听props的变化
+watch(props, async (newQuestion, oldQuestion) => {
+  switch (newQuestion.msg) {
+    case '首页':
+      radio.value = '首页'
+      break
+    case '文章':
+      radio.value = '文章'
+      break
+    case '登录':
+      radio.value = '登录'
+      break
+    case '管理':
+      radio.value = '管理'
+      break
+  }
+})
 </script>
+
 
 <template>
 

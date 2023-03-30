@@ -1,7 +1,10 @@
 <script setup>
-import {ref} from 'vue'
+import {getCurrentInstance, ref} from 'vue'
 
 defineProps({})
+const emit = defineEmits(['response'])
+emit('response', '文章')
+
 </script>
 
 <template>
