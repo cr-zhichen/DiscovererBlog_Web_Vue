@@ -1,7 +1,6 @@
 <script setup>
 
 import {computed, ref} from 'vue'
-import {getConfig, getForPath} from './tool/readPublic'
 
 import Home from './page/HomePage.vue'
 import NotFound from './page/NotFoundPage.vue'
