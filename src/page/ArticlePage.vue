@@ -27,16 +27,37 @@ queryArticlePost(
 
 <template>
   / {{ route.params.id }}
-  <div v-if="article.markdownContent==''">
-    <h1>{{ article.title }}</h1>
-    <div v-html="article.content"></div>
+  <h1>{{ article.title }}</h1>
+  <div
+      v-if="article.markdownContent==''"
+      class="article-content">
+    <div
+        v-html="article.content"
+        class="markdown-body"></div>
   </div>
-  <div v-else>
-    <h1>{{ article.title }}</h1>
-    <div v-html="article.markdownContent"></div>
+  <div v-else
+       class="article-content">
+    <div
+        v-html="md.render(article.markdownContent??'')"
+        class="markdown-body"></div>
   </div>
 </template>
 
 <style scoped>
+
+.article-content {
+  text-align: left;
+  padding: 30px 30px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+
+  blockquote {
+    border-left: 4px solid #ccc;
+    padding-left: 16px;
+    font-style: italic;
+    color: #666;
+  }
+
+}
 
 </style>

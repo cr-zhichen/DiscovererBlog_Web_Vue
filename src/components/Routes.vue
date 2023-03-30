@@ -62,7 +62,7 @@ watch(props, async (newQuestion, oldQuestion) => {
       v-model="radio"
       size="large">
     <el-radio-button label="首页"/>
-    <el-radio-button label="文章"/>
+    <el-radio-button label="文章" v-if="props.msg==='文章'"/>
     <el-radio-button label="登录"/>
     <el-radio-button label="管理"/>
   </el-radio-group>
