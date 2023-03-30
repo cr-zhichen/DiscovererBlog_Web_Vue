@@ -1,0 +1,29 @@
+{
+  "api": {
+    "url": "https://discoverer-blog-back.ccrui.cn",
+    "user": {
+      "loginUrl": "/User/Login",
+      "registerUrl": "/User/Register",
+      "resetPasswordUrl": "/User/ResetPassword",
+      "modifyUserNameUrl": "/User/ModifyUserName",
+      "sendCodeUrl": "/User/SendCode"
+    },
+    "article": {
+      "queryArticleListUrl": "/Article/QueryArticleList",
+      "returnArticleUrl": "/Article/returnArticle",
+      "deleteHistoryUrl": "/Article/DeleteHistory",
+      "deleteArticleUrl": "/Article/DeleteArticle",
+      "uploadArticleUrl": "/Article/UploadArticle",
+      "queryArticleUrl": "/Article/QueryArticle"
+    },
+    "comment": {
+      "viewCommentUrl": "/Comment/ViewComment",
+      "postACommentUrl": "/Comment/PostAComment",
+      "deleteCommentUrl": "/Comment/DeleteComment"
+    },
+    "statistics": {
+      "commentCountUrl": "/Statistics/CommentCount",
+      "articleCountUrl": "/Statistics/ArticleCount"
+    }
+  }
+}
