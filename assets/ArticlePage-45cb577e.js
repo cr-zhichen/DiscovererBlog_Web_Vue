@@ -1,0 +1,1 @@
+import{o as t,c as a,d as r,t as o,F as n,b as c}from"./index-a8c9b98b.js";const p=c("h1",null,"ArticlePage",-1),m={__name:"ArticlePage",props:{},emits:["response"],setup(l,{emit:e}){return e("response","文章"),(s,i)=>(t(),a(n,null,[r(" / "+o(s.$route.params.id)+" ",1),p],64))}};export{m as default};
