@@ -25,7 +25,7 @@ const articleCountUrl = url + "/Statistics/ArticleCount";//文章数统计
 //=================//
 
 //登录方法 Post
-function loginPost(email, password, ok, err) {
+export function loginPost(email, password, ok, err) {
     var body = {
         "email": email,
         "password": password
@@ -34,7 +34,7 @@ function loginPost(email, password, ok, err) {
 }
 
 //注册方法 Post
-function registerPost(userName, password, email, code, ok, err) {
+export function registerPost(userName, password, email, code, ok, err) {
     var body = {
         "userName": userName,
         "password": password,
@@ -45,7 +45,7 @@ function registerPost(userName, password, email, code, ok, err) {
 }
 
 //修改密码方法 Post
-function resetPasswordPost(email, password, code, ok, err) {
+export function resetPasswordPost(email, password, code, ok, err) {
     var body = {
         "email": email,
         "password": password,
@@ -55,7 +55,7 @@ function resetPasswordPost(email, password, code, ok, err) {
 }
 
 //修改用户名方法 Post
-function modifyUserNamePost(newUserName, token, ok, err) {
+export function modifyUserNamePost(newUserName, token, ok, err) {
     var body = {
         "newUserName": newUserName
     };
@@ -63,7 +63,7 @@ function modifyUserNamePost(newUserName, token, ok, err) {
 }
 
 //发送验证码方法 Post
-function sendCodePost(email, ok, err) {
+export function sendCodePost(email, ok, err) {
     var body = {
         "email": email
     };
@@ -82,7 +82,7 @@ export function queryArticleListPost(page, pageSize, tag, keyWord, ok, err) {
 }
 
 //返回文章 Post
-function returnArticlePost(articleId, token, ok, err) {
+export function returnArticlePost(articleId, token, ok, err) {
     var body = {
         "articleId": articleId
     };
@@ -90,7 +90,7 @@ function returnArticlePost(articleId, token, ok, err) {
 }
 
 //删除文章历史 Post
-function deleteHistoryPost(historyId, token, ok, err) {
+export function deleteHistoryPost(historyId, token, ok, err) {
     var body = {
         "historyId": historyId
     };
@@ -98,7 +98,7 @@ function deleteHistoryPost(historyId, token, ok, err) {
 }
 
 //删除文章 Post
-function deleteArticlePost(articleId, token, ok, err) {
+export function deleteArticlePost(articleId, token, ok, err) {
     var body = {
         "articleId": articleId
     };
@@ -106,7 +106,7 @@ function deleteArticlePost(articleId, token, ok, err) {
 }
 
 //上传文章 Post
-function uploadArticlePost(title, content, md_Content, tags, createTime, updateTime, articleId, token, ok, err) {
+export function uploadArticlePost(title, content, md_Content, tags, createTime, updateTime, articleId, token, ok, err) {
     var body = {
         "title": title,
         "content": content,
@@ -120,7 +120,7 @@ function uploadArticlePost(title, content, md_Content, tags, createTime, updateT
 }
 
 //查看文章 Post
-function queryArticlePost(articleId, ok, err) {
+export function queryArticlePost(articleId, ok, err) {
     var body = {
         "articleId": articleId
     };
@@ -128,7 +128,7 @@ function queryArticlePost(articleId, ok, err) {
 }
 
 //查看文章评论 Post
-function viewCommentPost(articleId, ok, err) {
+export function viewCommentPost(articleId, ok, err) {
     var body = {
         "articleId": articleId
     };
@@ -136,7 +136,7 @@ function viewCommentPost(articleId, ok, err) {
 }
 
 //发表文章评论 Post
-function postACommentPost(articleId, userName, email, parentId, content, token, ok, err) {
+export function postACommentPost(articleId, userName, email, parentId, content, token, ok, err) {
     var body = {
         "articleId": articleId,
         "userName": userName,
@@ -148,7 +148,7 @@ function postACommentPost(articleId, userName, email, parentId, content, token, 
 }
 
 //删除文章评论 Post
-function deleteCommentPost(commentId, ok, err) {
+export function deleteCommentPost(commentId, ok, err) {
     var body = {
         "commentId": commentId
     };
@@ -156,7 +156,7 @@ function deleteCommentPost(commentId, ok, err) {
 }
 
 //评论数统计 Post
-function commentCountPost(ok, err) {
+export function commentCountPost(ok, err) {
     var body = {};
     Post(commentCountUrl, null, body, ok, err);
 }
@@ -172,34 +172,37 @@ export function articleCountPost(ok, err) {
 //=================//
 
 //Post方法
-function Post(url, token, body, ok, err) {
+export function Post(url, token, body, ok, err) {
     var xhr = new XMLHttpRequest();
     xhr.open("POST", url, true);
     if (token != null) {
         xhr.setRequestHeader("Authorization", "Bearer " + token);
     }
     xhr.setRequestHeader("Content-Type", "application/json");
-    xhr.onreadystatechange = function () {
-        if (xhr.readyState == 4) {
-            if (xhr.status == 200) {
-                //转换为json对象
-                let jsonObject = JSON.parse(xhr.responseText);
+    xhr.onreadystatechange =
 
-                if (jsonObject.statusCode == -1) {
-                    err(jsonObject.message);
+        function () {
+            if (xhr.readyState == 4) {
+                if (xhr.status == 200) {
+                    //转换为json对象
+                    let jsonObject = JSON.parse(xhr.responseText);
+
+                    if (jsonObject.statusCode == -1) {
+                        err(jsonObject.message);
+                    } else {
+                        ok(jsonObject);
+                    }
+                } else if (xhr.status == 400) {
+                    let jsonObject = JSON.parse(xhr.responseText);
+                    err(jsonObject.title);
+                } else if (xhr.status == 401) {
+                    err("token无效");
                 } else {
-                    ok(jsonObject);
+                    err("未知错误");
                 }
-            } else if (xhr.status == 400) {
-                let jsonObject = JSON.parse(xhr.responseText);
-                err(jsonObject.title);
-            } else if (xhr.status == 401) {
-                err("token无效");
-            } else {
-                err("未知错误");
             }
         }
-    }
+
     //将body转换为json字符串
     body = JSON.stringify(body);
     xhr.send(body);

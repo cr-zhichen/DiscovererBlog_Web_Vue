@@ -89,6 +89,8 @@ articleCountPost(
   box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.15);
   margin: 20px auto;
   padding: 40px 70px;
+  cursor: pointer;
+
 }
 
 .home-page {
