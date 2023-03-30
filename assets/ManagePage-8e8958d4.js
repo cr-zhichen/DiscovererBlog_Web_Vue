@@ -1,1 +1,0 @@
-import{o as a,h as n}from"./index-86644da6.js";const c={__name:"ManagePage",emits:["response"],setup(s,{emit:e}){return e("response","管理"),(o,r)=>(a(),n("h1",null,"ManagePage"))}};export{c as default};
