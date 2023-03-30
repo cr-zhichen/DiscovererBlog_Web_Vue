@@ -2,7 +2,9 @@
 import MarkdownIt from 'markdown-it';
 import {ref} from 'vue'
 import {useRoute} from 'vue-router'
-import {queryArticlePost} from "@/tool/PostAPI.js";
+import {queryArticlePost, viewCommentPost} from "@/tool/PostAPI.js";
+import Comment from "@/components/Comment.vue";
+import CommentItem from "@/components/CommentItem.vue";
 
 defineProps({})
 const emit = defineEmits(['response'])
@@ -11,6 +13,7 @@ emit('response', '文章')
 const route = useRoute()
 const id = ref(route.params.id)
 const article = ref({})
+const comment = ref()
 
 const md = new MarkdownIt();
 
@@ -23,9 +26,19 @@ queryArticlePost(
     ((errData) => {
     }));
 
+//获取评论
+viewCommentPost(
+    id.value,
+    ((okData) => {
+      comment.value = okData.data;
+    }),
+    ((errData) => {
+    }));
+
 </script>
 
 <template>
+
   / {{ route.params.id }}
   <h1>{{ article.title }}</h1>
   <div
@@ -41,6 +54,22 @@ queryArticlePost(
         v-html="md.render(article.markdownContent??'')"
         class="markdown-body"></div>
   </div>
+
+  <!--  评论显示-->
+  <div v-if="comment&&comment.comments">
+    <div class="article-contents">
+      <div
+          v-for="(commentItem, index) in comment.comments"
+          :key="index"
+          class="article-contents-item">
+        <CommentItem :comment="commentItem"/>
+      </div>
+    </div>
+  </div>
+
+  <!--  发表评论-->
+  <Comment/>
+
 </template>
 
 <style scoped>
@@ -50,14 +79,20 @@ queryArticlePost(
   padding: 30px 30px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
   border-radius: 5px;
+}
 
-  blockquote {
-    border-left: 4px solid #ccc;
-    padding-left: 16px;
-    font-style: italic;
-    color: #666;
-  }
+.article-contents {
+  margin-top: 20px;
+  padding: 30px 30px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+}
 
+.article-contents-item {
+  margin-top: 20px;
+  padding: 30px 30px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
 }
 
 </style>
