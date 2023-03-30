@@ -20,7 +20,7 @@ watch(radio, async (newQuestion, oldQuestion) => {
       if (props.msg === '文章') {
         return
       }
-      window.location.href = '/article'
+      window.location.href = '/article/test'
       break
     case '登录':
       if (props.msg === '登录') {

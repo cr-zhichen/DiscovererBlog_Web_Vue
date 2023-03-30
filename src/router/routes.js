@@ -12,7 +12,7 @@ const routes = [
         component: () => import('@/page/LoginPage.vue'), //.vue不能省略
     },
     {
-        path: '/article',
+        path: '/article/:id',
         name: 'article',
         title: '文章',
         component: () => import('@/page/ArticlePage.vue'), //.vue不能省略
