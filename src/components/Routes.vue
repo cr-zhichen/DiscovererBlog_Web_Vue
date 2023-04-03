@@ -1,5 +1,6 @@
 <script setup>
 import {getCurrentInstance, ref, watch} from 'vue'
+import {getToken} from "@/tool/tool.js";
 
 const props = defineProps({
   msg: String
@@ -63,8 +64,8 @@ watch(props, async (newQuestion, oldQuestion) => {
       size="large">
     <el-radio-button label="首页"/>
     <el-radio-button label="文章" v-if="props.msg==='文章'"/>
-    <el-radio-button label="登录"/>
-    <el-radio-button label="管理"/>
+    <el-radio-button label="登录" v-if="getToken()==null||getToken==null"/>
+    <el-radio-button label="管理" v-if="getToken()!=null&&getToken!=null"/>
   </el-radio-group>
 
 </template>

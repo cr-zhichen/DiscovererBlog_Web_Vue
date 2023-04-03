@@ -17,3 +17,9 @@ export function getNowFormatDate(date) {
         + seperator2 + date.getSeconds();
     return currentdate;
 }
+
+//获取Token
+export function getToken() {
+    let token = localStorage.getItem("token");
+    return token;
+}
