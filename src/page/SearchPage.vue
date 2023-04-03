@@ -73,7 +73,7 @@ const viewArticles = (id) => {
             v-on:click="viewArticles(item.id)">
         <h2>{{ item.title }}</h2>
         <!--        <p>{{ item.introduction }}</p>-->
-        <div v-html="item.introduction"></div>
+        <div v-html="item.introduction" class="previewHtml"></div>
         发布者：{{ item.userName }}
         &nbsp&nbsp&nbsp&nbsp
         修改时间：{{ getNowFormatDate(item.updatedAt) }}

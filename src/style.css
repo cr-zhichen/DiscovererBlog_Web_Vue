@@ -199,3 +199,12 @@
 .manage-tabs--left .el-tabs__content {
     height: 100%;
 }
+
+/*不显示预览html中的图片 和样式*/
+.previewHtml img {
+    display: none;
+}
+
+.previewHtml {
+    overflow: hidden;
+}
