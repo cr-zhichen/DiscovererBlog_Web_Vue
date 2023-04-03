@@ -5,6 +5,7 @@ import {useRoute} from 'vue-router'
 import {queryArticlePost, viewCommentPost} from "@/tool/PostAPI.js";
 import Comment from "@/components/Comment.vue";
 import CommentItem from "@/components/CommentItem.vue";
+import {ElNotification} from "element-plus";
 
 defineProps({})
 const emit = defineEmits(['response'])
@@ -29,6 +30,11 @@ queryArticlePost(
         article.value = okData.data;
     }),
     ((errData) => {
+        ElNotification({
+            title: '获取文章失败',
+            type: 'error',
+            message: errData
+        });
     }));
 
 //获取评论
@@ -38,6 +44,11 @@ viewCommentPost(
         comment.value = okData.data;
     }),
     ((errData) => {
+        ElNotification({
+            title: '获取评论失败',
+            type: 'error',
+            message: errData
+        });
     }));
 
 </script>

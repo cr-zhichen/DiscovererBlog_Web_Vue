@@ -1,5 +1,5 @@
 <script setup>
-import {ref} from 'vue'
+import {ref, watch} from 'vue'
 import {articleCountPost, commentCountPost} from "@/tool/PostAPI.js";
 import UserManager from "@/components/UserManager.vue";
 import ArticleManager from "@/components/ArticleManager.vue";
@@ -34,25 +34,67 @@ const loginOut = () => {
     window.location.href = '/login'
 }
 
+const tab = ref('用户管理')
+
+const editArticle = ref(null)
+
+const editHistoryArticle = ref(null)
+
+const historyArticleId = ref(null)
+
+
 </script>
 
 <template>
-    <el-tabs :tab-position="'left'" class="manage-tabs">
-        <el-tab-pane label="用户管理">
-            <UserManager/>
+    <el-tabs :tab-position="'left'" class="manage-tabs" v-model="tab">
+        <el-tab-pane label="用户管理" name="用户管理">
+            <UserManager
+                    v-if="tab=='用户管理'"/>
         </el-tab-pane>
-        <el-tab-pane label="撰写文章">
-            <WriteAnArticleManager/>
+        <el-tab-pane label="撰写文章" name="撰写文章">
+            <WriteAnArticleManager
+                    :editArticleMsg="editArticle"
+                    :editHistoryArticleMsg="editHistoryArticle"
+                    :historyArticleId="historyArticleId"
+                    @giveUp="(o) =>{
+                        editArticle=null;
+                        editHistoryArticle=null;
+                        historyArticleId=null;
+                    }"
+                    v-if="tab=='撰写文章'"/>
         </el-tab-pane>
-        <el-tab-pane label="文章管理">
-            <ArticleManager/>
+        <el-tab-pane label="文章管理" name="文章管理">
+            <ArticleManager
+                    @editArticle="(o) =>{
+                        editArticle=null;
+                        editHistoryArticle=null;
+                        historyArticleId=null;
+                        editArticle=o;
+                        tab='撰写文章';
+                    }"
+                    @editHistoryArticle="(o) =>{
+                        editArticle=null;
+                        editHistoryArticle=null;
+                        historyArticleId=null;
+                        editHistoryArticle=o;
+                        tab='撰写文章';
+                    }"
+                    @historyArticleId="(o) =>{
+                        historyArticleId=o;
+                    }"
+                    v-if="tab=='文章管理'"/>
         </el-tab-pane>
-        <el-tab-pane label="评论管理">
-            <CommentManager/>
+        <el-tab-pane label="评论管理" name="评论管理">
+            <CommentManager
+                    v-if="tab=='评论管理'"/>
         </el-tab-pane>
-        <el-tab-pane label="退出登录">
+        <el-tab-pane label="退出登录" name="退出登录">
             <h1>退出登录</h1>
-            <el-button type="danger" @click="loginOut">退出登录</el-button>
+            <el-button
+                    type="danger"
+                    @click="loginOut"
+                    v-if="tab=='退出登录'">退出登录
+            </el-button>
         </el-tab-pane>
     </el-tabs>
 

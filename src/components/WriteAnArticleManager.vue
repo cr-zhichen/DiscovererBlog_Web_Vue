@@ -6,7 +6,7 @@
             <el-text
                     type="primary"
                     v-if="articleId!=null">
-                （更新文章）
+                （更新文章/{{ articleId }}）
             </el-text>
         </h1>
     </div>
@@ -15,6 +15,13 @@
             type="primary"
             class="writeAnArticleManager-sendButton"
             @click="sendArticle">上传文章
+    </el-button>
+
+  <!--    放弃修改按钮-->
+    <el-button
+            type="danger"
+            class="writeAnArticleManager-giveUpButton"
+            @click="giveUpArticle">放弃修改
     </el-button>
 
   <!--    标题输入框-->
@@ -65,8 +72,39 @@ const markdownContent = ref("");
 const htmlContent = ref("");
 const tag = ref("");
 
+const emit = defineEmits(['giveUp'])
+
 //需要修改文章的ID
 const articleId = ref(null);
+
+const props = defineProps({
+    editArticleMsg: Object,
+    editHistoryArticleMsg: Object,
+    historyArticleId: Object,
+})
+
+const giveUpArticle = () => {
+    articleId.value = null
+    title.value = "";
+    markdownContent.value = "";
+    tag.value = "";
+    emit('giveUp', true)
+}
+
+if (props.editArticleMsg != null) {
+    title.value = props.editArticleMsg.title;
+    markdownContent.value = props.editArticleMsg.markdownContent;
+    tag.value = props.editArticleMsg.tags;
+    articleId.value = props.editArticleMsg.id;
+}
+
+if (props.editHistoryArticleMsg != null && props.historyArticleId != null) {
+    title.value = props.editHistoryArticleMsg.title;
+    markdownContent.value = props.editHistoryArticleMsg.markdownContent;
+    tag.value = props.editHistoryArticleMsg.tags;
+    articleId.value = props.historyArticleId;
+}
+
 
 const sendArticle = () => {
     uploadArticlePost(
@@ -106,6 +144,10 @@ const sendArticle = () => {
 }
 
 .writeAnArticleManager-sendButton {
+    margin-bottom: 10px;
+}
+
+.writeAnArticleManager-giveUpButton {
     margin-bottom: 10px;
 }
 
