@@ -38,8 +38,11 @@ const deleteComment = async () => {
 //发表评论
 const submitComment = async () => {
 
-    //将页面滚动到最后
-    window.scrollTo(0, document.body.scrollHeight);
+    //将页面缓慢移动到底部
+    window.scrollTo({
+        top: document.body.scrollHeight,
+        behavior: "smooth"
+    });
     //将父评论的id传递给子组件
     emit('response', props.comment.id)
 
@@ -51,7 +54,7 @@ const submitComment = async () => {
 <template>
     <div>
         <div class="comment">
-            <h5 class="comentIten-userName">{{ props.comment.userName }}</h5>
+            <h5 class="comentIten-userName">{{ props.comment.userName }} /@{{ props.comment.id }}</h5>
             <h5 class="comentIten-reply" @click="submitComment">回复</h5>
             <p class="comentIten-content">{{ props.comment.content }}</p>
             <h5

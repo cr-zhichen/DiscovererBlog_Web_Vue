@@ -85,7 +85,9 @@ const nameRules = [
     <div
             class="comment-div">
 
-        <h2 class="comment-div-h2">评论{{ props.msg.parentId }}</h2>
+        <h2 class="comment-div-h2">评论
+            <span v-if="props.msg.parentId != null&& props.msg.parentId!=''"> @{{ props.msg.parentId }}</span>
+        </h2>
 
         <el-form
                 :model="form"
@@ -134,6 +136,17 @@ const nameRules = [
                 </el-button>
             </el-form-item>
 
+            <el-form-item
+                    class="comment-form-item"
+                    v-if="props.msg.parentId != null&& props.msg.parentId!=''">
+                <el-button
+                        type="danger"
+                        @click="props.msg.parentId= null"
+                        class="comment-form-cancel">
+                    取消回复
+                </el-button>
+            </el-form-item>
+
         </el-form>
 
     </div>
@@ -163,6 +176,11 @@ const nameRules = [
 
 .comment-form-primary {
     margin-top: 10px;
+    width: 100%;
+}
+
+.comment-form-cancel {
+    margin-top: -10px;
     width: 100%;
 }
 
