@@ -22,6 +22,12 @@ const routes = [
         name: 'manage',
         title: '管理',
         component: () => import('@/page/ManagePage.vue'), //.vue不能省略
+    },
+    {
+        path: '/search',
+        name: 'search',
+        title: '搜索',
+        component: () => import('@/page/SearchPage.vue'), //.vue不能省略
     }
 ]
 export default routes

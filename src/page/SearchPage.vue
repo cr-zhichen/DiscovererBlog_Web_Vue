@@ -9,24 +9,36 @@ defineProps({})
 
 //======变量=====//
 
-const pageSize = ref(6);
+const pageSize = ref(999999999);
 const reQueryArticleList = ref();
 //传递当前页面的名称
 const emit = defineEmits(['response'])
-emit('response', '首页')
+emit('response', '搜索')
 
 const nowPage = ref(1);
 const totalPage = ref(1);
 const articleCount = ref(0);
 
+const keyWord = ref(null);
+
 const handleCurrentChange = (newPage) => {
+
+    if (keyWord.value == null || keyWord.value == "") {
+        ElNotification({
+            title: '错误',
+            message: '请输入关键字',
+            type: 'error'
+        });
+        return;
+    }
+
     console.log(newPage);
     //获取文章列表
     queryArticleListPost(
         newPage,
         pageSize.value,
         null,
-        null,
+        keyWord.value,
         ((okData) => {
             reQueryArticleList.value = okData.data.articleList;
             //将页面缓慢移动到顶部
@@ -36,11 +48,6 @@ const handleCurrentChange = (newPage) => {
             });
         }),
         ((errData) => {
-            ElNotification({
-                title: '错误',
-                message: errData.message,
-                type: 'error'
-            });
         }));
     //将页面滚动到顶部
 }
@@ -49,19 +56,17 @@ const viewArticles = (id) => {
     window.location.href = '/article/' + id;
 }
 
-handleCurrentChange(1);
-
-articleCountPost(
-    ((okData) => {
-        articleCount.value = okData.data.count;
-        totalPage.value = Math.ceil(articleCount.value / pageSize.value);
-    }),
-    ((errData) => {
-    }));
-
 </script>
 
 <template>
+
+  <!--    搜索框-->
+    <el-input
+            v-model="keyWord"
+            placeholder="请在此搜索"
+            @keyup.enter.native="handleCurrentChange(1)"
+    />
+
     <div
             class="home-content"
             v-for="(item, index) in reQueryArticleList"
@@ -71,16 +76,6 @@ articleCountPost(
         发布者：{{ item.userName }}
         &nbsp&nbsp&nbsp&nbsp
         修改时间：{{ getNowFormatDate(item.updatedAt) }}
-    </div>
-
-    <div
-            v-if="totalPage > 1"
-            class="home-page">
-        <el-pagination
-                layout="prev, pager, next"
-                :total="totalPage*10"
-                @current-change="handleCurrentChange"
-                v-model="nowPage"/>
     </div>
 
 </template>
