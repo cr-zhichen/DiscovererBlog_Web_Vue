@@ -54,7 +54,10 @@ const submitComment = async () => {
             <h5 class="comentIten-userName">{{ props.comment.userName }}</h5>
             <h5 class="comentIten-reply" @click="submitComment">回复</h5>
             <p class="comentIten-content">{{ props.comment.content }}</p>
-            <h5 class="comentIten-delete" @click="deleteComment">删除</h5>
+            <h5
+                    class="comentIten-delete"
+                    @click="deleteComment"
+                    v-if="getToken()!=null">删除</h5>
             <small>{{ getNowFormatDate(props.comment.createdAt) }}</small>
         </div>
         <div class="replies" v-if="props.comment.comments.length > 0">

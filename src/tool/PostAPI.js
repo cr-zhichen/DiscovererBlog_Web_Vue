@@ -6,6 +6,7 @@ const resetPasswordUrl = url + "/User/ResetPassword";//修改密码
 const modifyUserNameUrl = url + "/User/ModifyUserName";//修改用户名
 const sendCodeUrl = url + "/User/SendCode";//发送验证码
 const getUserInfoUrl = url + "/User/GetUserInfo";//获取用户信息
+const modifyEmailUrl = url + "/User/ModifyEmail";//修改邮箱
 
 const queryArticleListUrl = url + "/Article/QueryArticleList";//查询文章列表
 const returnArticleUrl = url + "/Article/ReturnArticle";//返回文章
@@ -68,6 +69,16 @@ export function modifyUserNamePost(newUserName, token, ok, err) {
 export function getUserInfoPost(token, ok, err) {
     var body = {};
     Post(getUserInfoUrl, token, body, ok, err);
+}
+
+//修改邮箱 Post
+export function modifyEmailPost(email, newEmail, code, ok, err) {
+    var body = {
+        "email": email,
+        "newEmail": newEmail,
+        "code": code
+    };
+    Post(modifyEmailUrl, null, body, ok, err);
 }
 
 //发送验证码方法 Post

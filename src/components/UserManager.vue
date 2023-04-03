@@ -1,6 +1,6 @@
 <script setup>
 import {ref} from 'vue'
-import {getUserInfoPost, modifyUserNamePost, resetPasswordPost, sendCodePost} from "@/tool/PostAPI.js";
+import {getUserInfoPost, modifyEmailPost, modifyUserNamePost, resetPasswordPost, sendCodePost} from "@/tool/PostAPI.js";
 import {getToken} from "@/tool/tool.js";
 import {ElNotification} from "element-plus";
 
@@ -10,6 +10,7 @@ const props = defineProps({
 
 const input = ref("");
 const email = ref("");
+const newEmail = ref("");
 const userName = ref("");
 
 const verificationCode = ref("");
@@ -65,6 +66,29 @@ const revisePassword = () => {
             });
         });
 
+}
+
+const reviseEmail = () => {
+    modifyEmailPost(
+        email.value,
+        newEmail.value,
+        verificationCode.value,
+        (res) => {
+            ElNotification({
+                title: '修改邮箱成功',
+                type: 'success',
+                message: res.message
+            });
+            //刷新页面
+            window.location.reload();
+        }, (err) => {
+            ElNotification({
+                title: '修改邮箱失败',
+                type: 'error',
+                message: err
+            });
+        }
+    )
 }
 
 const getUserInfo = () => {
@@ -149,6 +173,31 @@ const reviseUserName = () => {
     <el-button
             type="danger"
             @click="revisePassword">修改密码
+    </el-button>
+
+    <h1>修改邮箱</h1>
+    <p>
+        <el-input
+                placeholder="请输入新的邮箱"
+                class="manage-tabs-input"
+                v-model="newEmail"/>
+    </p>
+
+    <p>
+        <el-input
+                placeholder="请输入邮箱验证码"
+                class="manage-tabs-input"
+                v-model="verificationCode"/>
+    </p>
+
+    <el-button
+            type="primary"
+            @click="sendCode">发送验证码
+    </el-button>
+
+    <el-button
+            type="danger"
+            @click="reviseEmail">修改邮箱
     </el-button>
 
 
