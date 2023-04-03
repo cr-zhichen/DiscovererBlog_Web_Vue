@@ -155,11 +155,11 @@ export function postACommentPost(articleId, userName, email, parentId, content, 
 }
 
 //删除文章评论 Post
-export function deleteCommentPost(commentId, ok, err) {
+export function deleteCommentPost(commentId, token, ok, err) {
     var body = {
         "commentId": commentId
     };
-    Post(deleteCommentUrl, null, body, ok, err);
+    Post(deleteCommentUrl, token, body, ok, err);
 }
 
 //评论数统计 Post
