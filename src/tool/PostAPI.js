@@ -5,6 +5,7 @@ const registerUrl = url + "/User/Register";//注册
 const resetPasswordUrl = url + "/User/ResetPassword";//修改密码
 const modifyUserNameUrl = url + "/User/ModifyUserName";//修改用户名
 const sendCodeUrl = url + "/User/SendCode";//发送验证码
+const getUserInfoUrl = url + "/User/GetUserInfo";//获取用户信息
 
 const queryArticleListUrl = url + "/Article/QueryArticleList";//查询文章列表
 const returnArticleUrl = url + "/Article/ReturnArticle";//返回文章
@@ -60,6 +61,12 @@ export function modifyUserNamePost(newUserName, token, ok, err) {
         "newUserName": newUserName
     };
     Post(modifyUserNameUrl, token, body, ok, err);
+}
+
+//获取用户信息 Post
+export function getUserInfoPost(token, ok, err) {
+    var body = {};
+    Post(getUserInfoUrl, token, body, ok, err);
 }
 
 //发送验证码方法 Post

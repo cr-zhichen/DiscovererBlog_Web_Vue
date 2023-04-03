@@ -188,3 +188,14 @@
 .markdown-body .hljs-strong {
     font-weight: bold;
 }
+
+.manage-tabs > .el-tabs__content {
+    padding-left: 32px;
+    color: #6b778c;
+    font-weight: 600;
+}
+
+.manage-tabs--right .el-tabs__content,
+.manage-tabs--left .el-tabs__content {
+    height: 100%;
+}
