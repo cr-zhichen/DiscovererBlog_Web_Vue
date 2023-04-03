@@ -60,9 +60,9 @@ viewCommentPost(
                 class="markdown-body"></div>
     </div>
 
-    <h2>评论</h2>
   <!--  评论显示-->
     <div v-if="comment && comment.comments">
+        <h2>评论</h2>
         <div class="article-contents">
             <div
                     v-for="(commentItem, index) in comment.comments"
