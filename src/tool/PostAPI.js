@@ -17,6 +17,7 @@ const queryArticleUrl = url + "/Article/QueryArticle";//查看文章
 const viewCommentUrl = url + "/Comment/ViewComment";//查看文章评论
 const postACommentUrl = url + "/Comment/PostAComment";//发表评论
 const deleteCommentUrl = url + "/Comment/DeleteComment";//删除评论
+const viewAllComment = url + "/Comment/ViewAllComment";//查看所有评论
 
 const commentCountUrl = url + "/Statistics/CommentCount";//评论数统计
 const articleCountUrl = url + "/Statistics/ArticleCount";//文章数统计
@@ -160,6 +161,12 @@ export function deleteCommentPost(commentId, token, ok, err) {
         "commentId": commentId
     };
     Post(deleteCommentUrl, token, body, ok, err);
+}
+
+//获取全部评论 Post
+export function viewAllCommentPost(token, ok, err) {
+    var body = {};
+    Post(viewAllComment, token, body, ok, err);
 }
 
 //评论数统计 Post
