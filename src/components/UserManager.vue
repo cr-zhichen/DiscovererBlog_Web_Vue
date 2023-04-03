@@ -105,6 +105,8 @@ const getUserInfo = () => {
             });
             //跳转到登录页面
             window.location.href = '/login'
+            //清空本地存储
+            localStorage.clear();
         });
 }
 getUserInfo();
