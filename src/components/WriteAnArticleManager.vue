@@ -1,6 +1,15 @@
 <template>
 
-    <h1 class="writeAnArticleManager-h1">撰写文章</h1>
+    <div>
+        <h1 class="writeAnArticleManager-h1">
+            撰写文章
+            <el-text
+                    type="primary"
+                    v-if="articleId!=null">
+                （更新文章）
+            </el-text>
+        </h1>
+    </div>
   <!--    发送按钮-->
     <el-button
             type="primary"
