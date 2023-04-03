@@ -1,1 +1,0 @@
-import{C as a,K as n}from"./index-7f4896cb.js";const c={__name:"ManagePage",emits:["response"],setup(s,{emit:e}){return e("response","管理"),(r,t)=>(a(),n("h1",null,"ManagePage"))}};export{c as default};
