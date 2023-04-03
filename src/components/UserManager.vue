@@ -16,6 +16,13 @@ const verificationCode = ref("");
 const newPassword = ref("");
 
 const sendCode = () => {
+
+    const loading = ElLoading.service({
+        lock: true,
+        text: 'Loading',
+        background: 'rgba(0, 0, 0, 0.7)',
+    })
+
     //发送验证码
     sendCodePost(
         email.value,
@@ -25,12 +32,14 @@ const sendCode = () => {
                 type: 'success',
                 message: res.message
             });
+            loading.close()
         }, (err) => {
             ElNotification({
                 title: '发送验证码失败',
                 type: 'error',
                 message: err
             });
+            loading.close()
         });
 }
 
@@ -46,6 +55,8 @@ const revisePassword = () => {
                 type: 'success',
                 message: res.message
             });
+            //刷新页面
+            window.location.reload();
         }, (err) => {
             ElNotification({
                 title: '修改密码失败',
@@ -53,6 +64,7 @@ const revisePassword = () => {
                 message: err
             });
         });
+
 }
 
 const getUserInfo = () => {
