@@ -1,4 +1,5 @@
-const url = "http://127.0.0.1:8080";
+// const url = "http://127.0.0.1:8080";
+const url = "https://discoverer-blog-back.ccrui.cn";
 
 const loginUrl = url + "/User/Login";//登录
 const registerUrl = url + "/User/Register";//注册
