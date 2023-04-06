@@ -1,5 +1,5 @@
-// const url = "http://127.0.0.1:8080";
-const url = "https://discoverer-blog-back.ccrui.cn";
+const url = "http://127.0.0.1:8080";
+// const url = "https://discoverer-blog-back.ccrui.cn";
 
 const loginUrl = url + "/User/Login";//登录
 const registerUrl = url + "/User/Register";//注册
@@ -15,6 +15,7 @@ const deleteHistoryUrl = url + "/Article/DeleteHistory";//删除文章历史
 const deleteArticleUrl = url + "/Article/DeleteArticle";//删除文章
 const uploadArticleUrl = url + "/Article/UploadArticle";//上传文章
 const queryArticleUrl = url + "/Article/QueryArticle";//查看文章
+const getAllTagsUrl = url + "/Article/GetAllTags";//获取所有标签
 
 const viewCommentUrl = url + "/Comment/ViewComment";//查看文章评论
 const postACommentUrl = url + "/Comment/PostAComment";//发表评论
@@ -146,6 +147,12 @@ export function queryArticlePost(articleId, ok, err) {
         "articleId": articleId
     };
     Post(queryArticleUrl, null, body, ok, err);
+}
+
+//获取所有标签 Post
+export function getAllTagsPost(ok, err) {
+    var body = {};
+    Post(getAllTagsUrl, null, body, ok, err);
 }
 
 //查看文章评论 Post

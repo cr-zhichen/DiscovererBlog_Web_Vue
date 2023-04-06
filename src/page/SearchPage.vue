@@ -1,6 +1,6 @@
 <script setup>
 import {ref} from 'vue'
-import {queryArticleListPost, articleCountPost} from '../tool/PostAPI'
+import {queryArticleListPost, articleCountPost, getAllTagsPost} from '../tool/PostAPI'
 import {getNowFormatDate} from '../tool/tool'
 import {ElNotification} from "element-plus";
 
@@ -14,30 +14,43 @@ const reQueryArticleList = ref();
 //传递当前页面的名称
 const emit = defineEmits(['response'])
 emit('response', '搜索')
-
-const nowPage = ref(1);
-const totalPage = ref(1);
-const articleCount = ref(0);
-
 const keyWord = ref(null);
+
+const tags = ref([])
+const options = ref([])
+
+getAllTagsPost(
+    ((okData) => {
+        options.value = okData.data.tags.map((item, index) => {
+            return {
+                value: item,
+                label: item
+            }
+        })
+    }),
+    ((errData) => {
+        ElNotification({
+            title: '获取标签失败',
+            message: errData,
+            type: 'error'
+        });
+    }));
 
 const handleCurrentChange = (newPage) => {
 
-    if (keyWord.value == null || keyWord.value == "") {
-        ElNotification({
-            title: '错误',
-            message: '请输入关键字',
-            type: 'error'
-        });
-        return;
+    //将tags转换为字符串
+    let strValue = '';
+    if (tags.value.length > 0) {
+        strValue = tags.value.join(',')
     }
 
-    console.log(newPage);
+    console.log(tags);
+
     //获取文章列表
     queryArticleListPost(
         newPage,
         pageSize.value,
-        null,
+        strValue,
         keyWord.value,
         ((okData) => {
             reQueryArticleList.value = okData.data.articleList;
@@ -48,6 +61,11 @@ const handleCurrentChange = (newPage) => {
             });
         }),
         ((errData) => {
+            ElNotification({
+                title: '获取文章列表失败',
+                message: errData.message,
+                type: 'error'
+            });
         }));
     //将页面滚动到顶部
 }
@@ -65,7 +83,22 @@ const viewArticles = (id) => {
             v-model="keyWord"
             placeholder="请在此搜索"
             @keyup.enter.native="handleCurrentChange(1)"
+
     />
+
+    <p>
+        <el-select-v2
+                v-model="tags"
+                filterable
+                :options="options"
+                placeholder="请选择标签"
+                style="width: 100%"
+                multiple
+                clearable
+                @change="handleCurrentChange(1)"
+        />
+    </p>
+
 
     <div
             class="home-content"

@@ -55,7 +55,10 @@ viewCommentPost(
 
 <template>
 
-  / {{ route.params.id }}
+    <p> / {{ route.params.id }}</p>
+    <p v-if="article.tags!=''">文章分类：{{ article.tags }}</p>
+    <p>更新时间：{{ article.updatedAt }}</p>
+
     <h1>{{ article.title }}</h1>
     <div
             v-if="article.markdownContent==''"
@@ -111,6 +114,12 @@ viewCommentPost(
     padding: 30px 30px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
     border-radius: 5px;
+}
+
+p {
+    font-size: 14px;
+    color: #999;
+    margin: 2px;
 }
 
 </style>
