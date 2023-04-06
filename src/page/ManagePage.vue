@@ -87,16 +87,10 @@ const historyArticleId = ref(null)
         <el-tab-pane label="文章管理" name="文章管理">
             <ArticleManager
                     @editArticle="(o) =>{
-                        editArticle=null;
-                        editHistoryArticle=null;
-                        historyArticleId=null;
                         editArticle=o;
                         tab='撰写文章';
                     }"
                     @editHistoryArticle="(o) =>{
-                        editArticle=null;
-                        editHistoryArticle=null;
-                        historyArticleId=null;
                         editHistoryArticle=o;
                         tab='撰写文章';
                     }"

@@ -33,6 +33,7 @@ const _editArticle = (id) => {
         getToken(),
         ((res) => {
             emit('editArticle', res.data)
+            console.log(res.data)
         }),
         ((err) => {
             ElNotification({
@@ -83,16 +84,11 @@ const deleteArticle = (id) => {
 
 const dialogTableVisible = ref(false);
 const gridData = ref();
-const contentCutOff = ref("");
 
 const viewHistoryArticle = (id) => {
     returnArticlePost(id,
         getToken(),
         ((res) => {
-
-            //截取内容
-            contentCutOff.value = res.data.content.substring(0, 100);
-
             gridData.value = res.data;
             dialogTableVisible.value = true;
         }),
@@ -146,10 +142,14 @@ const deleteHistoryArticle = (id) => {
         })
 }
 
-const _editHistoryArticle = (id) => {
+const contentCutOff = (row) => {
+    return row.content.length > 100 ? row.content.substring(0, 100) + '...' : row.content;
+}
+
+const _editHistoryArticle = (id, row) => {
     dialogTableVisible.value = false;
-    emit('editHistoryArticle', gridData.value)
-    emit('historyArticleId', id)
+    emit('editArticle', gridData.value)
+    emit('editHistoryArticle', row)
 }
 
 </script>
@@ -170,7 +170,7 @@ const _editHistoryArticle = (id) => {
 
             <el-table-column property="content" label="内容" width="300">
                 <template #default="{row}">
-                    {{ contentCutOff }}
+                    {{ contentCutOff(row) }}
                 </template>
             </el-table-column>
 
@@ -179,7 +179,7 @@ const _editHistoryArticle = (id) => {
                     <el-button
                             type="primary"
                             size="mini"
-                            @click="_editHistoryArticle(row.historyId)">
+                            @click="_editHistoryArticle(row.historyId,row)">
                         编辑
                     </el-button>
                 </template>

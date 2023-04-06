@@ -112,17 +112,19 @@ const giveUpArticle = () => {
 }
 
 if (props.editArticleMsg != null) {
+    console.log("1111")
     title.value = props.editArticleMsg.title;
     markdownContent.value = props.editArticleMsg.markdownContent;
     tag.value = props.editArticleMsg.tags;
     articleId.value = props.editArticleMsg.id;
 }
 
-if (props.editHistoryArticleMsg != null && props.historyArticleId != null) {
+if (props.editHistoryArticleMsg != null) {
+    console.log("2222")
     title.value = props.editHistoryArticleMsg.title;
     markdownContent.value = props.editHistoryArticleMsg.markdownContent;
     tag.value = props.editHistoryArticleMsg.tags;
-    articleId.value = props.historyArticleId;
+    articleId.value = props.editArticleMsg.id;
 }
 
 
