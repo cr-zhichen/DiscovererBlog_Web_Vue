@@ -18,6 +18,7 @@ const queryArticleUrl = url + "/Article/QueryArticle";//查看文章
 
 const viewCommentUrl = url + "/Comment/ViewComment";//查看文章评论
 const postACommentUrl = url + "/Comment/PostAComment";//发表评论
+const touristsPostACommentUrl = url + "/Comment/TouristsPostAComment";//游客发表评论
 const deleteCommentUrl = url + "/Comment/DeleteComment";//删除评论
 const viewAllComment = url + "/Comment/ViewAllComment";//查看所有评论
 
@@ -164,7 +165,13 @@ export function postACommentPost(articleId, userName, email, parentId, content, 
         "parentId": parentId,
         "content": content
     };
-    Post(postACommentUrl, token, body, ok, err);
+
+    if (token == null || token == "") {
+        Post(touristsPostACommentUrl, null, body, ok, err);
+    } else {
+        Post(postACommentUrl, token, body, ok, err);
+    }
+
 }
 
 //删除文章评论 Post
