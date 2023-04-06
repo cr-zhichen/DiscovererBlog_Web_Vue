@@ -2,7 +2,7 @@
 import {ref} from 'vue'
 import {deleteCommentPost, viewAllCommentPost} from "@/tool/PostAPI.js";
 import {getToken} from "@/tool/tool.js";
-import {ElNotification} from "element-plus";
+import {ElMessage, ElMessageBox, ElNotification} from "element-plus";
 
 const comments = ref();
 
@@ -25,24 +25,44 @@ _viewAllCommentPost();
 
 
 const deleteComment = (id) => {
-    deleteCommentPost(id,
-        getToken(),
-        ((res) => {
-            ElNotification({
-                title: '删除评论成功',
-                type: 'success',
-                message: res.message
-            });
-            //刷新页面
-            _viewAllCommentPost();
-        }),
-        ((err) => {
-            ElNotification({
-                title: '删除评论失败',
-                type: 'error',
-                message: err.message
-            });
-        }));
+
+    ElMessageBox.confirm(
+        '确定删除该评论吗？',
+        'Warning',
+        {
+            confirmButtonText: '确定',
+            cancelButtonText: '取消',
+            type: 'warning',
+        }
+    )
+        .then(() => {
+            deleteCommentPost(id,
+                getToken(),
+                ((res) => {
+                    ElNotification({
+                        title: '删除评论成功',
+                        type: 'success',
+                        message: res.message
+                    });
+                    //刷新页面
+                    _viewAllCommentPost();
+                }),
+                ((err) => {
+                    ElNotification({
+                        title: '删除评论失败',
+                        type: 'error',
+                        message: err.message
+                    });
+                }));
+        })
+        .catch(() => {
+            ElMessage({
+                type: 'info',
+                message: '取消删除',
+            })
+        })
+
+
 }
 
 </script>

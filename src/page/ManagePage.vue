@@ -1,10 +1,12 @@
 <script setup>
 import {ref, watch} from 'vue'
-import {articleCountPost, commentCountPost} from "@/tool/PostAPI.js";
+import {articleCountPost, commentCountPost, deleteHistoryPost} from "@/tool/PostAPI.js";
 import UserManager from "@/components/UserManager.vue";
 import ArticleManager from "@/components/ArticleManager.vue";
 import WriteAnArticleManager from "@/components/WriteAnArticleManager.vue";
 import CommentManager from "@/components/CommentManager.vue";
+import {ElMessage, ElMessageBox, ElNotification} from "element-plus";
+import {getToken} from "@/tool/tool.js";
 
 const emit = defineEmits(['response'])
 emit('response', '管理')
@@ -30,8 +32,27 @@ commentCountPost(
     });
 
 const loginOut = () => {
-    localStorage.clear();
-    window.location.href = '/login'
+
+    ElMessageBox.confirm(
+        '确定退出登录么？',
+        'Warning',
+        {
+            confirmButtonText: '确定',
+            cancelButtonText: '取消',
+            type: 'warning',
+        }
+    )
+        .then(() => {
+            localStorage.clear();
+            window.location.href = '/login'
+        })
+        .catch(() => {
+            ElMessage({
+                type: 'info',
+                message: '取消退出',
+            })
+        })
+
 }
 
 const tab = ref('用户管理')

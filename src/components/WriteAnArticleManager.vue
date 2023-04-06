@@ -63,7 +63,7 @@ import {ref} from 'vue'
 import MarkdownIt from "markdown-it";
 import {uploadArticlePost} from "@/tool/PostAPI.js";
 import {getToken} from "@/tool/tool.js";
-import {ElNotification} from "element-plus";
+import {ElMessage, ElMessageBox, ElNotification} from "element-plus";
 
 const md = new MarkdownIt();
 
@@ -84,11 +84,31 @@ const props = defineProps({
 })
 
 const giveUpArticle = () => {
-    articleId.value = null
-    title.value = "";
-    markdownContent.value = "";
-    tag.value = "";
-    emit('giveUp', true)
+
+    ElMessageBox.confirm(
+        '确定放弃修改吗？',
+        'Warning',
+        {
+            confirmButtonText: '确定',
+            cancelButtonText: '取消',
+            type: 'warning',
+        }
+    )
+        .then(() => {
+            articleId.value = null
+            title.value = "";
+            markdownContent.value = "";
+            tag.value = "";
+            emit('giveUp', true)
+        })
+        .catch(() => {
+            ElMessage({
+                type: 'info',
+                message: '取消放弃修改',
+            })
+        })
+
+
 }
 
 if (props.editArticleMsg != null) {

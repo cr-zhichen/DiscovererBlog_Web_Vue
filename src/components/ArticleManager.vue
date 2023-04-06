@@ -2,7 +2,7 @@
 import {ref} from 'vue'
 import {deleteArticlePost, deleteHistoryPost, queryArticleListPost, returnArticlePost} from "@/tool/PostAPI.js";
 import {getToken} from "@/tool/tool.js";
-import {ElNotification} from "element-plus";
+import {ElMessage, ElMessageBox, ElNotification} from "element-plus";
 
 const articleList = ref();
 
@@ -44,24 +44,41 @@ const _editArticle = (id) => {
 }
 
 const deleteArticle = (id) => {
-    deleteArticlePost(id,
-        getToken(),
-        ((res) => {
-            ElNotification({
-                title: '删除文章成功',
-                type: 'success',
-                message: res.message
-            });
-            //刷新页面
-            _queryArticleList();
-        }),
-        ((err) => {
-            ElNotification({
-                title: '删除文章失败',
-                type: 'error',
-                message: err.message
-            });
-        }));
+    ElMessageBox.confirm(
+        '确定删除该文章吗？',
+        'Warning',
+        {
+            confirmButtonText: '确定',
+            cancelButtonText: '取消',
+            type: 'warning',
+        }
+    )
+        .then(() => {
+            deleteArticlePost(id,
+                getToken(),
+                ((res) => {
+                    ElNotification({
+                        title: '删除文章成功',
+                        type: 'success',
+                        message: res.message
+                    });
+                    //刷新页面
+                    _queryArticleList();
+                }),
+                ((err) => {
+                    ElNotification({
+                        title: '删除文章失败',
+                        type: 'error',
+                        message: err.message
+                    });
+                }));
+        })
+        .catch(() => {
+            ElMessage({
+                type: 'info',
+                message: '取消删除',
+            })
+        })
 }
 
 const dialogTableVisible = ref(false);
@@ -90,25 +107,43 @@ const viewHistoryArticle = (id) => {
 
 
 const deleteHistoryArticle = (id) => {
-    deleteHistoryPost(id,
-        getToken(),
-        ((res) => {
-            ElNotification({
-                title: '删除文章历史记录成功',
-                type: 'success',
-                message: res.message
-            });
-            dialogTableVisible.value = false;
-            //刷新页面
-            _queryArticleList();
-        }),
-        ((err) => {
-            ElNotification({
-                title: '删除文章历史记录失败',
-                type: 'error',
-                message: err.message
-            });
-        }));
+
+    ElMessageBox.confirm(
+        '确定删除该历史记录吗？',
+        'Warning',
+        {
+            confirmButtonText: '确定',
+            cancelButtonText: '取消',
+            type: 'warning',
+        }
+    )
+        .then(() => {
+            deleteHistoryPost(id,
+                getToken(),
+                ((res) => {
+                    ElNotification({
+                        title: '删除文章历史记录成功',
+                        type: 'success',
+                        message: res.message
+                    });
+                    dialogTableVisible.value = false;
+                    //刷新页面
+                    _queryArticleList();
+                }),
+                ((err) => {
+                    ElNotification({
+                        title: '删除文章历史记录失败',
+                        type: 'error',
+                        message: err.message
+                    });
+                }));
+        })
+        .catch(() => {
+            ElMessage({
+                type: 'info',
+                message: '取消删除',
+            })
+        })
 }
 
 const _editHistoryArticle = (id) => {

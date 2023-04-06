@@ -2,7 +2,7 @@
 
 import {getNowFormatDate, getToken} from "../tool/tool.js";
 import {deleteCommentPost} from "@/tool/PostAPI.js";
-import {ElNotification} from "element-plus";
+import {ElMessage, ElMessageBox, ElNotification} from "element-plus";
 
 const props = defineProps({
     comment: Object
@@ -12,27 +12,38 @@ const emit = defineEmits(['response'])
 
 //删除评论
 const deleteComment = async () => {
-    if (confirm("确定删除该评论吗？")) {
-        deleteCommentPost(
-            props.comment.id,
-            getToken(),
-            (res) => {
-                ElNotification({
-                    title: '删除成功',
-                    type: 'success',
-                    message: res.message
+
+    ElMessageBox.confirm(
+        '确定删除该评论吗？',
+        'Warning',
+        {
+            confirmButtonText: '确实',
+            cancelButtonText: '取消',
+            type: 'warning',
+        }
+    )
+        .then(() => {
+            deleteCommentPost(
+                props.comment.id,
+                getToken(),
+                (res) => {
+                    //刷新当前页面
+                    window.location.reload();
+                },
+                (err) => {
+                    ElNotification({
+                        title: '删除失败',
+                        type: 'error',
+                        message: err
+                    });
                 });
-                //刷新当前页面
-                window.location.reload();
-            },
-            (err) => {
-                ElNotification({
-                    title: '删除失败',
-                    type: 'error',
-                    message: err
-                });
+        })
+        .catch(() => {
+            ElMessage({
+                type: 'info',
+                message: '已取消删除'
             });
-    }
+        })
 }
 
 //发表评论
