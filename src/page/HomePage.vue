@@ -92,21 +92,6 @@ articleCountPost(
 
 <style scoped>
 
-.home-content {
-    background-color: #fff;
-    border-radius: 5px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-    margin: 20px auto;
-    padding: 40px 70px;
-    cursor: pointer;
-
-}
-
-.home-page {
-    display: flex;
-    justify-content: center;
-}
-
 h2 {
     margin-top: 0;
 }

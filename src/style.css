@@ -4,6 +4,10 @@
     font-weight: 600;
 }
 
+.dark .manage-tabs > .el-tabs__content {
+    color: #bcc0c7;
+}
+
 .manage-tabs--right .el-tabs__content,
 .manage-tabs--left .el-tabs__content {
     height: 100%;
@@ -16,4 +20,62 @@
 
 .previewHtml {
     overflow: hidden;
+}
+
+.home-content,
+.article-content,
+.comment-div,
+.article-contents {
+    background-color: rgba(255, 255, 255, 0.90);
+}
+
+.home-content {
+    border-radius: 10px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    margin: 20px auto;
+    padding: 40px 70px;
+    cursor: pointer;
+}
+
+.dark .home-content {
+    background-color: rgba(255, 255, 255, 0.10);
+    border: 1px solid #e4e4e422;
+    color: #f8f9fadd;
+}
+
+.home-page {
+    display: flex;
+    justify-content: center;
+}
+
+.article-content {
+    text-align: left;
+    padding: 30px 30px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+}
+
+.article-contents {
+    margin-top: 20px;
+    padding: 30px 30px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+}
+
+.article-contents-item {
+    margin-top: 20px;
+    padding: 30px 30px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+}
+
+/* 深色模式 - .article-content */
+
+
+.dark .article-content,
+.dark .article-contents,
+.dark .article-contents-item,
+.comment-div {
+    background-color: rgba(0, 0, 0, 0.50);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
 }

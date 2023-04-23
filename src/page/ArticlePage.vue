@@ -58,20 +58,30 @@ viewCommentPost(
 
 <template>
 
-    <p> / {{ route.params.id }}</p>
-    <p v-if="article.tags!=''">文章分类：{{ article.tags }}</p>
-    <p>更新时间：{{ article.updatedAt }}</p>
 
-    <h1>{{ article.title }}</h1>
     <div
             v-if="article.markdownContent==''"
             class="article-content">
+
+        <p> / {{ route.params.id }}</p>
+        <p v-if="article.tags!=''">文章分类：{{ article.tags }}</p>
+        <p>更新时间：{{ article.updatedAt }}</p>
+
+        <h1>{{ article.title }}</h1>
+
         <div
                 v-html="article.content"
                 class="markdown-body"></div>
     </div>
     <div v-else
          class="article-content">
+
+        <p> / {{ route.params.id }}</p>
+        <p v-if="article.tags!=''">文章分类：{{ article.tags }}</p>
+        <p>更新时间：{{ article.updatedAt }}</p>
+
+        <h1>{{ article.title }}</h1>
+
         <div
                 v-highlight
                 v-html="marked(article.markdownContent??'')"
@@ -99,31 +109,14 @@ viewCommentPost(
 
 <style scoped>
 
-.article-content {
-    text-align: left;
-    padding: 30px 30px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-    border-radius: 5px;
-}
-
-.article-contents {
-    margin-top: 20px;
-    padding: 30px 30px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-    border-radius: 5px;
-}
-
-.article-contents-item {
-    margin-top: 20px;
-    padding: 30px 30px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-    border-radius: 5px;
-}
-
 p {
     font-size: 14px;
-    color: #999;
+    color: rgba(0, 0, 0, 0.50);
     margin: 2px;
+}
+
+.dark p {
+    color: rgba(255, 255, 255, 0.50);
 }
 
 </style>

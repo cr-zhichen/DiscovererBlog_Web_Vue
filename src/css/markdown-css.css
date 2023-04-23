@@ -115,7 +115,6 @@ code.hljs {
 .markdown-body h6 {
     margin: 1em 0;
     font-weight: bold;
-    color: #333;
 }
 
 .markdown-body h1 {
@@ -206,4 +205,31 @@ code.hljs {
 .markdown-body td {
     border: 1px solid #ccc;
     padding: 0.5em;
+}
+
+/* 深色模式 - Markdown样式 */
+.dark .markdown-body {
+    color: #ccc;
+}
+
+/* 深色模式 - 引用 */
+.dark .markdown-body blockquote {
+    border-left: 4px solid #999;
+    color: #999;
+}
+
+/* 深色模式 - 链接 */
+.dark .markdown-body a {
+    color: #1a8cff;
+}
+
+/* 深色模式 - 分隔线 */
+.dark .markdown-body hr {
+    border-top: 1px solid #999;
+}
+
+/* 深色模式 - 表格 */
+.dark .markdown-body th,
+.dark .markdown-body td {
+    border: 1px solid #999;
 }
