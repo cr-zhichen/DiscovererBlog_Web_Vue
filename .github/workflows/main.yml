@@ -7,6 +7,7 @@ on:
   push:
     branches:
       - master
+  workflow_dispatch:
 # 工作流执行的一个或多个任务
 jobs:
   # 任务名称
@@ -37,4 +38,3 @@ jobs:
           FOLDER: dist # The folder the action should deploy.
           # 在向 BRANCH 分支推送代码前，可以指定构建脚本
           BUILD_SCRIPT: npm install && npm run build # The build script the action should run prior to deploying.
-
