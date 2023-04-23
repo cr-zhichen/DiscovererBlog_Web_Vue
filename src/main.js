@@ -12,6 +12,7 @@ import {useDark, useToggle} from "@vueuse/core";
 
 //深色模式css
 import 'element-plus/theme-chalk/dark/css-vars.css'
+import './css/custom-element-ui.css'
 
 const app = createApp(App)
 app.use(hljs);

@@ -71,7 +71,11 @@ const historyArticleId = ref(null)
 </script>
 
 <template>
-    <el-tabs :tab-position="'left'" class="manage-tabs" v-model="tab">
+    <el-tabs
+            :tab-position="'left'"
+            class="manage-tabs"
+            v-model="tab"
+    >
         <el-tab-pane label="用户管理" name="用户管理" class="manage-tabs-label">
             <UserManager
                     v-if="tab=='用户管理'"/>

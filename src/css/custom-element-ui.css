@@ -1,0 +1,36 @@
+.el-tabs__item {
+    color: #fff !important;
+}
+
+.is-active {
+    color: #409eff !important;
+}
+
+.dark .el-tabs__item {
+    color: rgba(255, 255, 255, 0.85) !important;
+}
+
+.dark .is-active {
+    color: #409eff !important;
+}
+
+.el-radio-button__inner {
+    color: #3e4451 !important;
+}
+
+.dark .el-radio-button__inner {
+    color: rgba(255, 255, 255, 0.85) !important;
+}
+
+.el-radio-button__inner,
+.el-input__wrapper,
+.el-select-v2__wrapper {
+    background-color: rgba(255, 255, 255, 0.85) !important;
+}
+
+.dark .el-radio-button__inner,
+.dark .el-input__wrapper,
+.dark .el-select-v2__wrapper {
+    background-color: rgba(255, 255, 255, 0.10) !important;
+}
+
