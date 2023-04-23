@@ -9,6 +9,8 @@ const props = defineProps({
 const radio = ref("")
 
 import {useGoToArticle, useGoToHome, useGoToLogin, useGoToManage, useGoToSearch} from "@/router/goToRouter.js";
+import {getTheme, getThemeName, setTheme, toggleTheme} from "@/tool/themeChange.js";
+
 const goToHome = useGoToHome();
 const goToSearch = useGoToSearch();
 const goToArticle = useGoToArticle();
@@ -77,7 +79,8 @@ watch(props, async (newQuestion, oldQuestion) => {
 
     <el-radio-group
             v-model="radio"
-            size="large">
+            size="large"
+            class="routes-el-radio-group">
         <el-radio-button label="首页"/>
         <el-radio-button label="文章" v-if="props.msg==='文章'"/>
         <el-radio-button label="搜索"/>
@@ -85,9 +88,21 @@ watch(props, async (newQuestion, oldQuestion) => {
         <el-radio-button label="管理" v-if="getToken()!=null&&getToken!=null"/>
     </el-radio-group>
 
+    <el-radio-group
+            v-model="radio"
+            size="large"
+            class="routes-el-radio-group">
+        <el-radio-button v-if="getTheme()==='dark'" :label="getThemeName()" @click="toggleTheme()"/>
+        <el-radio-button v-if="getTheme()==='light'" :label="getThemeName()" @click="toggleTheme()"/>
+        <el-radio-button v-if="getTheme()==='auto'" :label="getThemeName()" @click="toggleTheme()"/>
+    </el-radio-group>
+
 </template>
 
 <style scoped>
 
+.routes-el-radio-group {
+    margin: 0 5px
+}
 
 </style>
