@@ -15,7 +15,7 @@ const childMsg = ref();
 
 <template>
 
-    <el-backtop :right="100" :bottom="100"/>
+    <el-backtop :right="50" :bottom="50"/>
     <div class="common-layout">
         <!--        导入背景，并放在最底层-->
         <Background style="z-index: -1"/>
@@ -47,10 +47,9 @@ const childMsg = ref();
 /* 根据设备宽度进行自适应 */
 @media screen and (max-width: 768px) {
     .common-layout {
-        max-width: 95%; /* 调整为适合移动设备的宽度 */
+        max-width: 99%; /* 调整为适合移动设备的宽度 */
     }
 }
-
 
 
 </style>
