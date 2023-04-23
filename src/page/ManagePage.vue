@@ -72,11 +72,11 @@ const historyArticleId = ref(null)
 
 <template>
     <el-tabs :tab-position="'left'" class="manage-tabs" v-model="tab">
-        <el-tab-pane label="用户管理" name="用户管理">
+        <el-tab-pane label="用户管理" name="用户管理" class="manage-tabs-label">
             <UserManager
                     v-if="tab=='用户管理'"/>
         </el-tab-pane>
-        <el-tab-pane label="撰写文章" name="撰写文章">
+        <el-tab-pane label="撰写文章" name="撰写文章" class="manage-tabs-label">
             <WriteAnArticleManager
                     :editArticleMsg="editArticle"
                     :editHistoryArticleMsg="editHistoryArticle"
@@ -88,7 +88,7 @@ const historyArticleId = ref(null)
                     }"
                     v-if="tab=='撰写文章'"/>
         </el-tab-pane>
-        <el-tab-pane label="文章管理" name="文章管理">
+        <el-tab-pane label="文章管理" name="文章管理" class="manage-tabs-label">
             <ArticleManager
                     @editArticle="(o) =>{
                         editArticle=o;
@@ -103,11 +103,11 @@ const historyArticleId = ref(null)
                     }"
                     v-if="tab=='文章管理'"/>
         </el-tab-pane>
-        <el-tab-pane label="评论管理" name="评论管理">
+        <el-tab-pane label="评论管理" name="评论管理" class="manage-tabs-label">
             <CommentManager
                     v-if="tab=='评论管理'"/>
         </el-tab-pane>
-        <el-tab-pane label="退出登录" name="退出登录">
+        <el-tab-pane label="退出登录" name="退出登录" class="manage-tabs-label">
             <h1>退出登录</h1>
             <el-button
                     type="danger"
@@ -120,9 +120,5 @@ const historyArticleId = ref(null)
 </template>
 
 <style scoped>
-
-.manage-tabs-input {
-    width: 50%;
-}
 
 </style>

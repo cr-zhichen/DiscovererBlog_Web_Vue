@@ -1,11 +1,11 @@
 .manage-tabs > .el-tabs__content {
     padding-left: 32px;
-    color: #6b778c;
+    color: rgba(255, 255, 255, 0.95);
     font-weight: 600;
 }
 
 .dark .manage-tabs > .el-tabs__content {
-    color: #bcc0c7;
+    color: rgba(255, 255, 255, 0.85);
 }
 
 .manage-tabs--right .el-tabs__content,
@@ -59,14 +59,14 @@
     margin-top: 20px;
     padding: 30px 30px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-    border-radius: 5px;
+    border-radius: 10px;
 }
 
 .article-contents-item {
     margin-top: 20px;
     padding: 30px 30px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-    border-radius: 5px;
+    border-radius: 10px;
 }
 
 /* 深色模式 - .article-content */
