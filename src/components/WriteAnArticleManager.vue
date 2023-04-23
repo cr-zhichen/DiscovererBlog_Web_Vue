@@ -51,7 +51,7 @@
         <el-col :span="12" class="writeAnArticleManager-col">
             <div
                     v-html="marked(markdownContent)"
-                    class="markdown-body writeAnArticleManager-mdDiv"
+                    class="markdown-body markdown-body-live writeAnArticleManager-mdDiv"
                     id="markdown-body"></div>
         </el-col>
     </el-row>

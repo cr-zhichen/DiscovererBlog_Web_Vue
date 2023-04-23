@@ -26,7 +26,7 @@
 .article-content,
 .comment-div,
 .article-contents {
-    background-color: rgba(255, 255, 255, 0.90);
+    background-color: rgba(255, 255, 255, 0.85) !important;
 }
 
 .home-content {
@@ -71,11 +71,10 @@
 
 /* 深色模式 - .article-content */
 
-
 .dark .article-content,
 .dark .article-contents,
 .dark .article-contents-item,
 .dark .comment-div {
-    background-color: rgba(0, 0, 0, 0.50);
+    background-color: rgba(255, 255, 255, 0.10) !important;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
 }

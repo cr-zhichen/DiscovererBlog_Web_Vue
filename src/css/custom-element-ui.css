@@ -24,13 +24,54 @@
 
 .el-radio-button__inner,
 .el-input__wrapper,
-.el-select-v2__wrapper {
+.el-select-v2__wrapper,
+.el-textarea__inner,
+.markdown-body-live {
     background-color: rgba(255, 255, 255, 0.85) !important;
 }
 
+
 .dark .el-radio-button__inner,
 .dark .el-input__wrapper,
-.dark .el-select-v2__wrapper {
+.dark .el-select-v2__wrapper,
+.dark .el-textarea__inner,
+.dark .markdown-body-live {
     background-color: rgba(255, 255, 255, 0.10) !important;
+}
+
+.dark .markdown-body-live {
+    border: #00000000 !important;
+}
+
+/*列表更改*/
+
+.el-table,
+.el-table__body tr:nth-child(odd),
+.el-table__body tr:nth-child(even) {
+    background-color: rgba(255, 255, 255, 0) !important;
+}
+
+.el-table .el-table__row,
+.el-table .el-table__row:nth-child(odd),
+.el-table .el-table__row:nth-child(even) {
+    background-color: rgba(255, 255, 255, 0.85) !important;
+}
+
+.dark .el-table .el-table__row,
+.dark .el-table .el-table__row:nth-child(odd),
+.dark .el-table .el-table__row:nth-child(even) {
+    background-color: rgba(255, 255, 255, 0.10) !important;
+}
+
+.el-table .el-table__header-wrapper {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    overflow: hidden;
+}
+
+.el-table .el-table__body-wrapper {
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    overflow: hidden;
 }
 
