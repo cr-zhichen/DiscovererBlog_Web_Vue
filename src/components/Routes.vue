@@ -8,6 +8,13 @@ const props = defineProps({
 
 const radio = ref("")
 
+import {useGoToArticle, useGoToHome, useGoToLogin, useGoToManage, useGoToSearch} from "@/router/goToRouter.js";
+const goToHome = useGoToHome();
+const goToSearch = useGoToSearch();
+const goToArticle = useGoToArticle();
+const goToLogin = useGoToLogin();
+const goToManage = useGoToManage();
+
 //监听radio的变化
 watch(radio, async (newQuestion, oldQuestion) => {
     switch (newQuestion) {
@@ -15,31 +22,31 @@ watch(radio, async (newQuestion, oldQuestion) => {
             if (props.msg === '首页') {
                 return
             }
-            window.location.href = '/'
+            goToHome()
             break
         case '搜索':
             if (props.msg === '搜索') {
                 return
             }
-            window.location.href = '/search'
+            goToSearch()
             break
         case '文章':
             if (props.msg === '文章') {
                 return
             }
-            window.location.href = '/article'
+            goToArticle()
             break
         case '登录':
             if (props.msg === '登录') {
                 return
             }
-            window.location.href = '/login'
+            goToLogin()
             break
         case '管理':
             if (props.msg === '管理') {
                 return
             }
-            window.location.href = '/manage'
+            goToManage()
             break
     }
 })

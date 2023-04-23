@@ -6,6 +6,10 @@ import {ElNotification} from "element-plus";
 
 defineProps({})
 
+import {useGoToArticle} from "@/router/goToRouter.js";
+
+const goToArticle = useGoToArticle();
+
 
 //======变量=====//
 
@@ -71,7 +75,7 @@ const handleCurrentChange = (newPage) => {
 }
 
 const viewArticles = (id) => {
-    window.location.href = '/article/' + id;
+    goToArticle(id);
 }
 
 </script>

@@ -7,9 +7,13 @@ import WriteAnArticleManager from "@/components/WriteAnArticleManager.vue";
 import CommentManager from "@/components/CommentManager.vue";
 import {ElMessage, ElMessageBox, ElNotification} from "element-plus";
 import {getToken} from "@/tool/tool.js";
+import {useGoToLogin} from "@/router/goToRouter.js";
+
+const goToLogin = useGoToLogin();
 
 const emit = defineEmits(['response'])
 emit('response', '管理')
+
 
 //文章数量
 const articleNum = ref(0);
@@ -44,7 +48,7 @@ const loginOut = () => {
     )
         .then(() => {
             localStorage.clear();
-            window.location.href = '/login'
+            goToLogin();
         })
         .catch(() => {
             ElMessage({

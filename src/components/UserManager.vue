@@ -3,6 +3,9 @@ import {ref} from 'vue'
 import {getUserInfoPost, modifyEmailPost, modifyUserNamePost, resetPasswordPost, sendCodePost} from "@/tool/PostAPI.js";
 import {getToken} from "@/tool/tool.js";
 import {ElNotification} from "element-plus";
+import {useGoToLogin} from "@/router/goToRouter.js";
+
+const goToLogin = useGoToLogin();
 
 const props = defineProps({
     msg: String
@@ -105,7 +108,7 @@ const getUserInfo = () => {
                 message: err
             });
             //跳转到登录页面
-            window.location.href = '/login'
+            goToLogin();
             //清空本地存储
             localStorage.clear();
         });

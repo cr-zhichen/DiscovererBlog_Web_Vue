@@ -4,6 +4,10 @@ import {queryArticleListPost, articleCountPost} from '../tool/PostAPI'
 import {getNowFormatDate} from '../tool/tool'
 import {ElNotification} from "element-plus";
 
+import {useGoToArticle} from "@/router/goToRouter.js";
+
+const goToArticle = useGoToArticle();
+
 defineProps({})
 
 
@@ -46,7 +50,7 @@ const handleCurrentChange = (newPage) => {
 }
 
 const viewArticles = (id) => {
-    window.location.href = '/article/' + id;
+    goToArticle(id);
 }
 
 handleCurrentChange(1);

@@ -64,6 +64,9 @@ import MarkdownIt from "markdown-it";
 import {uploadArticlePost} from "@/tool/PostAPI.js";
 import {getToken} from "@/tool/tool.js";
 import {ElMessage, ElMessageBox, ElNotification} from "element-plus";
+import {useGoToArticle} from "@/router/goToRouter.js";
+
+const goToArticle = useGoToArticle();
 
 const md = new MarkdownIt();
 
@@ -145,7 +148,7 @@ const sendArticle = () => {
                 message: res.message
             });
             //跳转到文章界面
-            window.location.href = '/article/' + res.data.id;
+            goToArticle(res.data.id)
         }),
         ((err) => {
             ElNotification({
