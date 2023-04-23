@@ -22,5 +22,5 @@ export default defineConfig({
         }
     },
     base: '/',
-    publicPath: './'
+    publicPath: process.env.NODE_ENV === "production" ? "/vue-running" : "/",
 })
