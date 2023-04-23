@@ -90,8 +90,8 @@ viewCommentPost(
 
   <!--  评论显示-->
     <div v-if="comment && comment.comments">
-        <h2>评论</h2>
         <div class="article-contents">
+            <h2 class="article-contents-h2">评论区</h2>
             <div
                     v-for="(commentItem, index) in comment.comments"
                     :key="index"
@@ -117,6 +117,11 @@ p {
 
 .dark p {
     color: rgba(255, 255, 255, 0.50);
+}
+
+.article-contents-h2 {
+    font-size: 20px;
+    margin: 2px;
 }
 
 </style>
