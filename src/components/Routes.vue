@@ -1,5 +1,5 @@
 <script setup>
-import {getCurrentInstance, ref, watch} from 'vue'
+import {ref, watch} from 'vue'
 import {getToken} from "@/tool/tool.js";
 
 const props = defineProps({
