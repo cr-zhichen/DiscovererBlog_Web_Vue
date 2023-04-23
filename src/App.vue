@@ -3,6 +3,7 @@
 import {computed, ref} from 'vue'
 
 import Routes from "./components/Routes.vue";
+import Background from "./components/Background.vue";
 
 //======变量=====//
 
@@ -13,8 +14,11 @@ const childMsg = ref();
 </script>
 
 <template>
+
     <el-backtop :right="100" :bottom="100"/>
     <div class="common-layout">
+        <!--        导入背景，并放在最底层-->
+        <Background style="z-index: -1"/>
         <el-container>
             <el-header class="app-header">
                 <Routes :msg="childMsg"/>
@@ -25,7 +29,6 @@ const childMsg = ref();
             </el-main>
         </el-container>
     </div>
-
 
 </template>
 
@@ -47,6 +50,7 @@ const childMsg = ref();
         max-width: 95%; /* 调整为适合移动设备的宽度 */
     }
 }
+
 
 
 </style>
