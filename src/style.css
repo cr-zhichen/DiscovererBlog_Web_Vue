@@ -75,7 +75,7 @@
 .dark .article-content,
 .dark .article-contents,
 .dark .article-contents-item,
-.comment-div {
+.dark .comment-div {
     background-color: rgba(0, 0, 0, 0.50);
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
 }
