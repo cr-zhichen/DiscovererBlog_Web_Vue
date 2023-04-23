@@ -50,7 +50,7 @@
         </el-col>
         <el-col :span="12" class="writeAnArticleManager-col">
             <div
-                    v-html="md.render(markdownContent)"
+                    v-html="marked(markdownContent)"
                     class="markdown-body writeAnArticleManager-mdDiv"
                     id="markdown-body"></div>
         </el-col>
@@ -66,9 +66,12 @@ import {getToken} from "@/tool/tool.js";
 import {ElMessage, ElMessageBox, ElNotification} from "element-plus";
 import {useGoToArticle} from "@/router/goToRouter.js";
 
-const goToArticle = useGoToArticle();
+// 将marked 引入
+import {marked} from 'marked';
+// 引入markdown的css样式
+import '../css/markdown-css.css';
 
-const md = new MarkdownIt();
+const goToArticle = useGoToArticle();
 
 const title = ref("");
 const markdownContent = ref("");
@@ -134,7 +137,7 @@ if (props.editHistoryArticleMsg != null) {
 const sendArticle = () => {
     uploadArticlePost(
         title.value,
-        md.render(markdownContent.value),
+        marked(markdownContent.value),
         markdownContent.value,
         tag.value,
         null,

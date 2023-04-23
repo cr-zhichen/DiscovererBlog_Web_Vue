@@ -7,6 +7,11 @@ import Comment from "@/components/Comment.vue";
 import CommentItem from "@/components/CommentItem.vue";
 import {ElNotification} from "element-plus";
 
+// 将marked 引入
+import {marked} from 'marked';
+// 引入markdown的css样式
+import '../css/markdown-css.css';
+
 defineProps({})
 const emit = defineEmits(['response'])
 emit('response', '文章')
@@ -20,8 +25,6 @@ const msg = ref({
     articleId: id.value,
     parentId: "",
 })
-
-const md = new MarkdownIt();
 
 //获取文章
 queryArticlePost(
@@ -70,7 +73,8 @@ viewCommentPost(
     <div v-else
          class="article-content">
         <div
-                v-html="md.render(article.markdownContent??'')"
+                v-highlight
+                v-html="marked(article.markdownContent??'')"
                 class="markdown-body"></div>
     </div>
 
