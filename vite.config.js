@@ -6,21 +6,24 @@ import {ElementPlusResolver} from 'unplugin-vue-components/resolvers'
 import path from "path";
 
 // https://vitejs.dev/config/
-export default defineConfig({
-    plugins: [
-        vue(),
-        AutoImport({
-            resolvers: [ElementPlusResolver()],
-        }),
-        Components({
-            resolvers: [ElementPlusResolver()],
-        }),
-    ],
-    resolve: {
-        alias: {
-            '@': path.resolve(__dirname, 'src'),
-        }
-    },
-    base: '/',
-    publicPath: process.env.NODE_ENV === 'production' ? '/DiscovererBlog_Web_Vue/' : '/',
-})
+export default defineConfig(({mode}) => {
+    const isProduction = mode === 'production';
+    return {
+        plugins: [
+            vue(),
+            AutoImport({
+                resolvers: [ElementPlusResolver()],
+            }),
+            Components({
+                resolvers: [ElementPlusResolver()],
+            }),
+        ],
+        resolve: {
+            alias: {
+                '@': path.resolve(__dirname, 'src'),
+            }
+        },
+        base: '/',
+        publicPath: isProduction ? '/DiscovererBlog_Web_Vue/' : './'
+    };
+});
