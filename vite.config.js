@@ -7,7 +7,6 @@ import path from "path";
 
 // https://vitejs.dev/config/
 export default defineConfig(({mode}) => {
-    const isProduction = mode === 'production';
     return {
         plugins: [
             vue(),
@@ -24,6 +23,6 @@ export default defineConfig(({mode}) => {
             }
         },
         base: '/',
-        publicPath: isProduction ? '/DiscovererBlog_Web_Vue/' : './'
+        publicPath: '/DiscovererBlog_Web_Vue/'
     };
 });
