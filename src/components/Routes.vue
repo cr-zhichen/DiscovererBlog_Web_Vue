@@ -83,7 +83,7 @@ watch(props, async (newQuestion, oldQuestion) => {
             class="routes-el-radio-group">
         <el-radio-button label="首页"/>
         <el-radio-button label="文章" v-if="props.msg==='文章'"/>
-        <el-radio-button label="搜索"/>
+        <!--        <el-radio-button label="搜索"/>-->
         <el-radio-button label="登录" v-if="getToken()==null||getToken==null"/>
         <el-radio-button label="管理" v-if="getToken()!=null&&getToken!=null"/>
     </el-radio-group>
