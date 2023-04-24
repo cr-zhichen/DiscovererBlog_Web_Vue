@@ -1,4 +1,6 @@
 // const url = "http://127.0.0.1:8080";
+import {ElLoading} from "element-plus";
+
 const url = "https://discoverer-blog-back.ccrui.cn";
 
 const loginUrl = url + "/User/Login";//登录
@@ -213,6 +215,13 @@ export function articleCountPost(ok, err) {
 
 //Post方法
 export function Post(url, token, body, ok, err) {
+
+    const loading = ElLoading.service({
+        lock: true,
+        text: 'Loading',
+        background: 'rgba(0, 0, 0, 0.7)',
+    })
+
     var xhr = new XMLHttpRequest();
     xhr.open("POST", url, true);
     if (token != null) {
@@ -241,6 +250,7 @@ export function Post(url, token, body, ok, err) {
                     err("未知错误");
                 }
             }
+            loading.close();
         }
 
     //将body转换为json字符串
