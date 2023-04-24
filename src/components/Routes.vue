@@ -9,7 +9,7 @@ const props = defineProps({
 const radio = ref("")
 
 import {useGoToArticle, useGoToHome, useGoToLogin, useGoToManage, useGoToSearch} from "@/router/goToRouter.js";
-import {getTheme, getThemeName, setTheme, toggleTheme} from "@/tool/themeChange.js";
+import {getTheme, getThemeIcon, setTheme, toggleTheme} from "@/tool/themeChange.js";
 
 const goToHome = useGoToHome();
 const goToSearch = useGoToSearch();
@@ -86,15 +86,6 @@ watch(props, async (newQuestion, oldQuestion) => {
         <el-radio-button label="搜索"/>
         <el-radio-button label="登录" v-if="getToken()==null||getToken==null"/>
         <el-radio-button label="管理" v-if="getToken()!=null&&getToken!=null"/>
-    </el-radio-group>
-
-    <el-radio-group
-            v-model="radio"
-            size="large"
-            class="routes-el-radio-group">
-        <el-radio-button v-if="getTheme()==='dark'" :label="getThemeName()" @click="toggleTheme()"/>
-        <el-radio-button v-if="getTheme()==='light'" :label="getThemeName()" @click="toggleTheme()"/>
-        <el-radio-button v-if="getTheme()==='auto'" :label="getThemeName()" @click="toggleTheme()"/>
     </el-radio-group>
 
 </template>

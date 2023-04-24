@@ -4,18 +4,27 @@ import {computed, ref} from 'vue'
 
 import Routes from "./components/Routes.vue";
 import Background from "./components/Background.vue";
+import {Search} from "@element-plus/icons-vue";
+import {getTheme, getThemeIcon, toggleTheme} from "@/tool/themeChange.js";
 
-//======变量=====//
 
 const childMsg = ref();
 
-//======方法=====//
+const themeIcon = ref(getThemeIcon());
+
+const switchTheme = () => {
+    toggleTheme();
+    themeIcon.value = getThemeIcon();
+}
 
 </script>
 
 <template>
 
-    <el-backtop :right="50" :bottom="50"/>
+    <div class="app-fixed">
+        <el-button :icon="themeIcon" circle size="large" @click="switchTheme()"/>
+    </div>
+
     <div class="common-layout">
         <!--        导入背景，并放在最底层-->
         <Background style="z-index: -1"/>
@@ -49,6 +58,15 @@ const childMsg = ref();
     .common-layout {
         max-width: 99%; /* 调整为适合移动设备的宽度 */
     }
+}
+
+.app-fixed {
+    /*    固定在右下角*/
+    position: fixed;
+    right: 5%;
+    bottom: 5%;
+    /*    使其不会被遮挡*/
+    z-index: 999;
 }
 
 

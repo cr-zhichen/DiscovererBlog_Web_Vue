@@ -27,7 +27,6 @@
 .el-select-v2__wrapper,
 .el-textarea__inner,
 .markdown-body-live,
-.el-backtop,
 .el-popper {
     background-color: rgba(255, 255, 255, 0.85) !important;
 }
@@ -38,7 +37,6 @@
 .dark .el-select-v2__wrapper,
 .dark .el-textarea__inner,
 .dark .markdown-body-live,
-.dark .el-backtop,
 .dark .el-popper {
     background-color: rgba(255, 255, 255, 0.10) !important;
 }

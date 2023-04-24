@@ -6,7 +6,7 @@ export const Theme = {
 };
 
 // 从localStorage中获取主题
-import { useDark, useToggle } from '@vueuse/core';
+import {useDark, useToggle} from '@vueuse/core';
 
 // 获取主题
 export function getTheme() {
@@ -14,15 +14,15 @@ export function getTheme() {
 }
 
 // 获取主题名称
-export function getThemeName() {
+export function getThemeIcon() {
     let theme = getTheme();
     switch (theme) {
         case Theme.LIGHT:
-            return '浅色主题';
+            return 'Sunny';
         case Theme.DARK:
-            return '深色主题';
+            return 'Moon';
         case Theme.AUTO:
-            return '自动主题';
+            return 'Sunrise';
         default:
     }
 }
