@@ -30,7 +30,10 @@
 .el-popper,
 .el-pagination .btn-prev,
 .el-pagination .btn-next,
-.el-pagination .el-pager li {
+.el-pagination .el-pager li,
+.el-message-box,
+.el-message,
+.el-notification {
     background-color: rgba(255, 255, 255, 0.85) !important;
 }
 
@@ -43,7 +46,10 @@
 .dark .el-popper,
 .dark .el-pagination .btn-prev,
 .dark .el-pagination .btn-next,
-.dark .el-pagination .el-pager li {
+.dark .el-pagination .el-pager li,
+.dark .el-message-box,
+.dark .el-message,
+.dark .el-notification {
     background-color: rgba(255, 255, 255, 0.10) !important;
 }
 
@@ -92,3 +98,15 @@
     border-radius: 10px;
 }
 
+.el-message-box,
+.el-message {
+    border-radius: 10px;
+    /*    阴影*/
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.el-message-box__title,
+.el-message-box__message,
+.el-message__content {
+    color: #ffffff;
+}

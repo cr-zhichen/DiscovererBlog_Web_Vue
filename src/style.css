@@ -25,7 +25,8 @@
 .home-content,
 .article-content,
 .comment-div,
-.article-contents {
+.article-contents,
+.login-div {
     background-color: rgba(255, 255, 255, 0.85) !important;
 }
 
@@ -69,12 +70,17 @@
     border-radius: 10px;
 }
 
+.login-div {
+    border-radius: 10px;
+}
+
 /* 深色模式 - .article-content */
 
 .dark .article-content,
 .dark .article-contents,
 .dark .article-contents-item,
-.dark .comment-div {
+.dark .comment-div,
+.dark .login-div {
     background-color: rgba(255, 255, 255, 0.10) !important;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
 }

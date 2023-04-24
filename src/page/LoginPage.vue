@@ -105,9 +105,7 @@ const submitForm = async () => {
 <style scoped>
 
 .login-div {
-    padding: 30px 30px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-    border-radius: 5px;
+    padding: 50px 50px;
     position: absolute;
     left: 50%;
     top: 50%;

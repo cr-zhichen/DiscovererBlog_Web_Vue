@@ -235,3 +235,9 @@ code.hljs {
 .dark .markdown-body td {
     border: 1px solid #999;
 }
+
+/* 深色模式 - 图片 */
+.dark .markdown-body img {
+    /*    图片变暗*/
+    filter: brightness(0.8);
+}
