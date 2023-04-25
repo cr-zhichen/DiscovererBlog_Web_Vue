@@ -17,12 +17,32 @@ const switchTheme = () => {
     themeIcon.value = getThemeIcon();
 }
 
+const backToTheTopOfThePage = () => {
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+}
+
+//判断用户距离页面顶部的距离，如果大于100，则显示返回顶部按钮
+const isShowBackToTheTopOfThePage = ref(false)
+
+//用户滚动页面时，判断用户距离页面顶部的距离，如果大于100，则显示返回顶部按钮
+window.onscroll = () => {
+    isShowBackToTheTopOfThePage.value = window.pageYOffset > 100;
+}
+
 </script>
 
 <template>
 
     <div class="app-fixed">
-        <el-button :icon="themeIcon" circle size="large" @click="switchTheme()"/>
+        <div class="app-fixed-btn" v-show="isShowBackToTheTopOfThePage">
+            <el-button icon="CaretTop" circle size="large" @click="backToTheTopOfThePage()"/>
+        </div>
+        <div class="app-fixed-btn">
+            <el-button :icon="themeIcon" circle size="large" @click="switchTheme()"/>
+        </div>
     </div>
 
     <div class="common-layout">
@@ -69,5 +89,8 @@ const switchTheme = () => {
     z-index: 999;
 }
 
+.app-fixed-btn {
+    margin-bottom: 10px;
+}
 
 </style>
