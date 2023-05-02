@@ -168,13 +168,13 @@ const _editHistoryArticle = (id, row) => {
             <el-table-column property="tags" label="标签"/>
             <el-table-column property="createdAt" label="创建时间"/>
 
-            <el-table-column property="content" label="内容" width="300">
+            <el-table-column property="content" label="内容" min-width="300">
                 <template #default="{row}">
                     {{ contentCutOff(row) }}
                 </template>
             </el-table-column>
 
-            <el-table-column property="historyId" label="编辑">
+            <el-table-column property="historyId" label="编辑" width="84">
                 <template #default="{row}">
                     <el-button
                             type="primary"
@@ -185,7 +185,7 @@ const _editHistoryArticle = (id, row) => {
                 </template>
             </el-table-column>
 
-            <el-table-column property="historyId" label="删除">
+            <el-table-column property="historyId" label="删除" width="84">
                 <template #default="{row}">
                     <el-button
                             type="danger"
@@ -204,22 +204,22 @@ const _editHistoryArticle = (id, row) => {
         <el-table-column prop="title" label="标题"/>
         <el-table-column prop="tags" label="标签"/>
         <el-table-column prop="updatedAt" label="更新时间"/>
-        <el-table-column prop="introduction" label="内容" width="300"/>
+        <el-table-column prop="introduction" label="内容" min-width="300"/>
 
-        <el-table-column prop="id" label="编辑">
+        <el-table-column prop="id" label="编辑" width="84">
             <template #default="{row}">
                 <el-button type="primary" size="mini" @click="_editArticle(row.id)">编辑</el-button>
             </template>
         </el-table-column>
 
-        <el-table-column prop="id" label="删除">
+        <el-table-column prop="id" label="删除" width="84">
             <template #default="{row}">
                 <el-button type="danger" size="mini" @click="deleteArticle(row.id)">删除</el-button>
             </template>
         </el-table-column>
 
         <!--        查看历史-->
-        <el-table-column prop="id" label="查看历史">
+        <el-table-column prop="id" label="查看历史" width="84">
             <template #default="{row}">
                 <el-button type="success" size="mini" @click="viewHistoryArticle(row.id)">历史</el-button>
             </template>

@@ -78,7 +78,7 @@ const deleteComment = (id) => {
         <el-table-column prop="content" label="评论内容"/>
         <el-table-column prop="createdAt" label="发表时间"/>
         <!--        根据id删除-->
-        <el-table-column label="操作">
+        <el-table-column label="操作" width="84">
             <template #default="{row}">
                 <el-button type="danger" @click="deleteComment(row.id)">删除</el-button>
             </template>

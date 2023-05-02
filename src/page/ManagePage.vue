@@ -1,5 +1,5 @@
 <script setup>
-import {ref, watch} from 'vue'
+import {ref, watch, watchEffect} from 'vue'
 import {articleCountPost, commentCountPost, deleteHistoryPost} from "@/tool/PostAPI.js";
 import UserManager from "@/components/UserManager.vue";
 import ArticleManager from "@/components/ArticleManager.vue";
@@ -19,6 +19,29 @@ emit('response', '管理')
 const articleNum = ref(0);
 //评论数量
 const commentNum = ref(0);
+
+const tabPosition = ref('left')
+
+const updateTabPosition = () => {
+    if (window.innerWidth < 768) {
+        tabPosition.value = 'top';
+    } else {
+        tabPosition.value = 'left';
+    }
+};
+
+// 监听屏幕宽度变化
+watchEffect(() => {
+    window.addEventListener('resize', updateTabPosition);
+
+    // 初始化时执行一次
+    updateTabPosition();
+
+    return () => {
+        // 当组件卸载时，移除事件监听
+        window.removeEventListener('resize', updateTabPosition);
+    };
+});
 
 
 articleCountPost(
@@ -72,7 +95,7 @@ const historyArticleId = ref(null)
 
 <template>
     <el-tabs
-            :tab-position="'left'"
+            :tab-position="tabPosition"
             class="manage-tabs"
             v-model="tab"
     >

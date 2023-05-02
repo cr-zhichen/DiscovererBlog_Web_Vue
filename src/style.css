@@ -13,6 +13,12 @@
     height: 100%;
 }
 
+@media screen and (max-width: 768px){
+    .manage-tabs > .el-tabs__content {
+        padding-left: 2px;
+    }
+}
+
 /*不显示预览html中的图片 和样式*/
 .previewHtml img {
     display: none;
