@@ -73,12 +73,27 @@ window.onscroll = () => {
     margin: 0 auto;
 }
 
-/* 根据设备宽度进行自适应 */
+/* 适应手机 */
 @media screen and (max-width: 768px) {
     .common-layout {
         max-width: 99%; /* 调整为适合移动设备的宽度 */
     }
+
+    .el-main {
+        padding-left: 0;
+        padding-right: 0;
+    }
 }
+
+/* 适应带鱼屏 */
+@media screen and (min-width: 2560px) {
+    .common-layout {
+        max-width: 60%; /* 调整为适合宽屏显示器的宽度 */
+        margin-left: auto; /* 左边距自动 */
+        margin-right: auto; /* 右边距自动 */
+    }
+}
+
 
 .app-fixed {
     /*    固定在右下角*/
