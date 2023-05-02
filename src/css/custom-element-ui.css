@@ -110,5 +110,11 @@
 .el-message-box__title,
 .el-message-box__message,
 .el-message__content {
-    color: #ffffff;
+    color: #3e4451;
+}
+
+.dark .el-message-box__title,
+.dark .el-message-box__message,
+.dark .el-message__content {
+    color: rgba(255, 255, 255, 0.85);
 }
