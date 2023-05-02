@@ -110,12 +110,20 @@ const submitForm = async () => {
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    width: 50%;
+    width: 30%;
 }
+
 
 @media screen and (max-width: 768px) {
     .login-div {
         width: 70%;
+    }
+}
+
+/* 适应带鱼屏 */
+@media screen and (min-width: 2560px) {
+    .login-div {
+        width: 20%;
     }
 }
 
