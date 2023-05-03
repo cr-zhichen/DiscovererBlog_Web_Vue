@@ -1,66 +1,5 @@
-<template>
-
-    <div>
-        <h1 class="writeAnArticleManager-h1">
-            撰写文章
-            <el-text
-                    type="primary"
-                    v-if="articleId!=null">
-                （更新文章/{{ articleId }}）
-            </el-text>
-        </h1>
-    </div>
-  <!--    发送按钮-->
-    <el-button
-            type="primary"
-            class="writeAnArticleManager-sendButton"
-            @click="sendArticle">上传文章
-    </el-button>
-
-  <!--    放弃修改按钮-->
-    <el-button
-            type="danger"
-            class="writeAnArticleManager-giveUpButton"
-            @click="giveUpArticle">放弃修改
-    </el-button>
-
-  <!--    标题输入框-->
-    <el-input
-            placeholder="请输入文章标题"
-            v-model="title"
-            class="writeAnArticleManager-inputTitle"></el-input>
-
-  <!--    Tag输入框-->
-    <el-input
-            placeholder="请输入文章Tag,多个Tag请用逗号隔开"
-            v-model="tag"
-            class="writeAnArticleManager-inputTag"></el-input>
-
-    <el-row
-            :gutter="20"
-            class="writeAnArticleManager-row">
-        <el-col :span="12" class="writeAnArticleManager-col">
-            <el-input
-                    type="textarea"
-                    placeholder="请使用MD语法输入文章内容"
-                    :rows="20"
-                    v-model="markdownContent"
-                    class="writeAnArticleManager-inputContent"
-                    autosize></el-input>
-        </el-col>
-        <el-col :span="12" class="writeAnArticleManager-col">
-            <div
-                    v-html="marked(markdownContent)"
-                    class="markdown-body markdown-body-live writeAnArticleManager-mdDiv"
-                    id="markdown-body"></div>
-        </el-col>
-    </el-row>
-
-</template>
-
 <script setup>
 import {ref} from 'vue'
-import MarkdownIt from "markdown-it";
 import {uploadArticlePost} from "@/tool/PostAPI.js";
 import {getToken} from "@/tool/tool.js";
 import {ElMessage, ElMessageBox, ElNotification} from "element-plus";
@@ -164,6 +103,67 @@ const sendArticle = () => {
 }
 
 </script>
+
+
+<template>
+
+    <div>
+        <h1 class="writeAnArticleManager-h1">
+            撰写文章
+            <el-text
+                    type="primary"
+                    v-if="articleId!=null">
+                （更新文章/{{ articleId }}）
+            </el-text>
+        </h1>
+    </div>
+  <!--    发送按钮-->
+    <el-button
+            type="primary"
+            class="writeAnArticleManager-sendButton"
+            @click="sendArticle">上传文章
+    </el-button>
+
+  <!--    放弃修改按钮-->
+    <el-button
+            type="danger"
+            class="writeAnArticleManager-giveUpButton"
+            @click="giveUpArticle">放弃修改
+    </el-button>
+
+  <!--    标题输入框-->
+    <el-input
+            placeholder="请输入文章标题"
+            v-model="title"
+            class="writeAnArticleManager-inputTitle"></el-input>
+
+  <!--    Tag输入框-->
+    <el-input
+            placeholder="请输入文章Tag,多个Tag请用逗号隔开"
+            v-model="tag"
+            class="writeAnArticleManager-inputTag"></el-input>
+
+    <el-row
+            :gutter="20"
+            class="writeAnArticleManager-row">
+        <el-col :span="12" class="writeAnArticleManager-col">
+            <el-input
+                    type="textarea"
+                    placeholder="请使用MD语法输入文章内容"
+                    :rows="20"
+                    v-model="markdownContent"
+                    class="writeAnArticleManager-inputContent"
+                    autosize></el-input>
+        </el-col>
+        <el-col :span="12" class="writeAnArticleManager-col">
+            <div
+                    v-highlight
+                    v-html="marked(markdownContent)"
+                    class="markdown-body markdown-body-live writeAnArticleManager-mdDiv"></div>
+        </el-col>
+    </el-row>
+
+</template>
 
 <style scoped>
 

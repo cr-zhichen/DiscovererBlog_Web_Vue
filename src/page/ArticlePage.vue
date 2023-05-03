@@ -1,5 +1,4 @@
 <script setup>
-import MarkdownIt from 'markdown-it';
 import {ref} from 'vue'
 import {useRoute} from 'vue-router'
 import {queryArticlePost, viewCommentPost} from "@/tool/PostAPI.js";
